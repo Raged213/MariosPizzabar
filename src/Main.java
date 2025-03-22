@@ -8,6 +8,7 @@ public class Main{
             System.out.println("PIZZAER");
 ;
 
+
         Pizza pizza = new Pizza("Vesuvio", "tomatsauce, ost, skinke og oregano", 57);
                 Pizza pizza = new Pizza("Amerikaner", "tomatsauce, ost, oksefars og oregano", 53);
                 Pizza pizza = new Pizza("Cacciatore", "tomatsauce, ost, pepperoni og oregano", 57);

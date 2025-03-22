@@ -5,7 +5,7 @@ public class Bestilling {
     private String navn;
     private int pizzaNummer;
     private boolean afhentningsTidspunkt;
-private ArrayList<Pizza> ordreListe;
+    private ArrayList<Pizza> ordreListe;
 
     public Bestilling(String navn, int pizzaNummer, boolean afhteningsTidspunkt){
 this.navn = navn;
