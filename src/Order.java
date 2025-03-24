@@ -47,4 +47,12 @@ public class Order {
     public void setAfhentningsTidspunkt(String afhentningsTidspunkt) {
         this.afhentningsTidspunkt = afhentningsTidspunkt;
     }
+
+    @Override
+    public String toString() {
+        return "Ordrenummer: " + ordreNummer + "\n" +
+                "Navn: " + navn + "\n" +
+                "Pizzanummer: " + pizzaNummer + "\n" +
+                "Afhentningstidspunkt: " + afhentningsTidspunkt + "\n";
+    }
 }

@@ -4,13 +4,13 @@ import java.util.Scanner;
 public class PizzaBarController {
 
 
-
-
 public static void creatOrder(){
-    int P = 0;
+    int ordNr = 0;
+    //int X =+ X + 1;
     Scanner sc = new Scanner(System.in);
     Order x = new Order();
-    x.setOrdreNummer(P);
+    ordNr =+ ordNr + 1;
+    x.setOrdreNummer(ordNr);
     System.out.print("Kunde navn:");
     String navn = sc.nextLine();
     x.setNavn(navn);
@@ -20,10 +20,13 @@ public static void creatOrder(){
     System.out.print("Afhentnings Tidspunkt:");
     String AfhentningsTidspunkt = sc.nextLine();
     x.setAfhentningsTidspunkt(AfhentningsTidspunkt);
-
+    addToList(x);
 }
 
-public static void addToList(){
+public static void addToList(Order ordre){
+    ArrayList<Order> orderList = new ArrayList<>();
+    orderList.add(ordre);
+    System.out.println(orderList);
 
 }
 
