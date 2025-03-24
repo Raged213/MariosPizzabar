@@ -5,10 +5,6 @@ public class PizzaMenu {
      List<Pizza> pizzaList;
      List<String> dots;
 
-     public static void main(String [] args) {
-         PizzaMenu menuKort = new PizzaMenu();
-         menuKort.menu();
-     }
 
 public void menu() {
     pizzaList = new ArrayList<>();
@@ -63,4 +59,5 @@ public void menu() {
 
 
     }
+
 }

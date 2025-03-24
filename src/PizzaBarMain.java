@@ -13,7 +13,6 @@ public class PizzaBarMain {
         run();
     }
 
-
     public static void run() {
 
         Scanner scanner = new Scanner(System.in);

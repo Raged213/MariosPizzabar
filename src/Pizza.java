@@ -67,5 +67,4 @@ this.price = price;
     public String toString() {
 return name + ingredients + price;
     }
-
 }
