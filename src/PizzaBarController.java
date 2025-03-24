@@ -1,0 +1,75 @@
+import java.util.ArrayList;
+import java.util.Scanner;
+
+public class PizzaBarController {
+
+
+
+
+public static void creatOrder(){
+    int P = 0;
+    Scanner sc = new Scanner(System.in);
+    Order x = new Order();
+    x.setOrdreNummer(P);
+    System.out.print("Kunde navn:");
+    String navn = sc.nextLine();
+    x.setNavn(navn);
+    System.out.print("Pizzanummer:");
+    int PizzaNummer = sc.nextInt();
+    x.setPizzaNummer(PizzaNummer);
+    System.out.print("Afhentnings Tidspunkt:");
+    String AfhentningsTidspunkt = sc.nextLine();
+    x.setAfhentningsTidspunkt(AfhentningsTidspunkt);
+
+}
+
+public static void addToList(){
+
+}
+
+public static void removeOrder(){
+
+}
+
+public static void saveOrder(){
+
+}
+
+    public static Pizza createPizza() {
+        Scanner scanner = new Scanner(System.in);
+        //Enter Pizzas navn
+        System.out.print("Enter pizza name: ");
+        String name = scanner.nextLine();
+
+        //Enter Pizzas ingredients
+        System.out.print("Enter ingredients: ");
+        String ingredients = scanner.nextLine();
+
+        //Enter prisen på pizza
+        int price;
+        while(true) {
+            System.out.print("Enter prisen på pizza, hele nummer!: ");
+            if (scanner.hasNextInt()){
+                scanner.nextLine();
+                break;
+            }else {
+                System.out.println("Kan ikke register øre, prøve igen med hele nummer! ");
+                scanner.nextLine();
+            }
+        }
+
+        Pizza newPizza = new Pizza(name, ingredients, price);
+        System.out.println("Pizza created: " + newPizza);
+
+        return newPizza;
+        }
+
+public static void editPizza(){
+
+}
+
+
+
+
+
+}
