@@ -2,36 +2,65 @@ import java.util.ArrayList;
 import java.util.List;
 public class PizzaMenu {
 
-    static List<Pizza> pizzaList;
+     List<Pizza> pizzaList;
+     List<String> dots;
 
-public static void menu() {
+     public static void main(String [] args) {
+         PizzaMenu menuKort = new PizzaMenu();
+         menuKort.menu();
+     }
+
+public void menu() {
     pizzaList = new ArrayList<>();
+    dots = new ArrayList<>();
     Pizzaer();
 }
 
     public void Pizzaer() {
-        pizzaList.add(new Pizza(1, "Vesuvio", "tomatsauce, ost, skinke og oregano", 57));
-        pizzaList.add(new Pizza(2, "Amerikaner",  "tomatsauce, ost, oksefars og oregano", 53));
-        pizzaList.add(new Pizza(3, "Cacciator", "tomatsauce, ost, pepperoni og oregano", 57));
-        pizzaList.add(new Pizza(4, "Carbona", "tomatsauce, ost, kødsauce, spaghetti, cocktailpølser og oregano", 63));
-        pizzaList.add(new Pizza(5, "Dennis", "tomatsauce, ost, skinke, pepperoni, cocktailpølser og oregano", 65));
-        pizzaList.add(new Pizza(6, "Bertil", "tomatsauce, ost, bacon og oregano", 57));
-        pizzaList.add(new Pizza(7, "Silvia", "tomatsauce, ost, pepperoni, rød peber, løg, oliven og oregano", 61));
-        pizzaList.add(new Pizza(8, "Victoria", "tomatsauce, ost, skinke, ananas, champignon, løg, og oregano", 61));
-        pizzaList.add(new Pizza(9, "Toronfo", "tomatsauce, ost, skinke, bacon, kebab, chili og oregano", 61));
-        pizzaList.add(new Pizza(10, "Capricciosa", "tomatsauce, ost, skinke, champignon og oregano", 61));
-        pizzaList.add(new Pizza(11, "Hawai", "tomatsauce, ost, skinke, ananas og oregano", 61));
-        pizzaList.add(new Pizza(12, "Le Blissola", "tomatsauce, ost, skinke, rejer og oregano", 61));
-        pizzaList.add(new Pizza(13, "Venezia", "tomatsauce, ost, skinke, bacon og oregano", 61));
-        pizzaList.add(new Pizza(14, "Mafia", "tomatsauce, ost, pepperoni, bacon, løg og oregano", 61));
+        pizzaList.add(new Pizza(1, "Vesuvio", false, "tomatsauce, ost, skinke og oregano", 57));
+        pizzaList.add(new Pizza(2, "Amerikaner", true, "tomatsauce, ost, oksefars og oregano", 53));
+        pizzaList.add(new Pizza(3, "Cacciator", false, "tomatsauce, ost, pepperoni og oregano", 57));
+        pizzaList.add(new Pizza(4, "Carbona", true, "tomatsauce, ost, kødsauce, spaghetti, cocktailpølser og oregano", 63));
+        pizzaList.add(new Pizza(5, "Dennis", true, "tomatsauce, ost, skinke, pepperoni, cocktailpølser og oregano", 65));
+        pizzaList.add(new Pizza(6, "Bertil", false, "tomatsauce, ost, bacon og oregano", 57));
+        pizzaList.add(new Pizza(7, "Silvia", false, "tomatsauce, ost, pepperoni, rød peber, løg, oliven og oregano", 61));
+        pizzaList.add(new Pizza(8, "Victoria", false, "tomatsauce, ost, skinke, ananas, champignon, løg, og oregano", 61));
+        pizzaList.add(new Pizza(9, "Toronfo", true, "tomatsauce, ost, skinke, bacon, kebab, chili og oregano", 61));
+        pizzaList.add(new Pizza(10, "Capricciosa", false, "tomatsauce, ost, skinke, champignon og oregano", 61));
+        pizzaList.add(new Pizza(11, "Hawai", false, "tomatsauce, ost, skinke, ananas og oregano", 61));
+        pizzaList.add(new Pizza(12, "Le Blissola", false, "tomatsauce, ost, skinke, rejer og oregano", 61));
+        pizzaList.add(new Pizza(13, "Venezia", false, "tomatsauce, ost, skinke, bacon og oregano", 61));
+        pizzaList.add(new Pizza(14, "Mafia", true, "tomatsauce, ost, pepperoni, bacon, løg og oregano", 61));
+
+        this.dots.add("..............");
+        this.dots.add(".......................");
+        this.dots.add("..............");
+        this.dots.add(".......................");
+        this.dots.add("..............");
+        this.dots.add(".......................");
+        this.dots.add("..............");
+        this.dots.add(".......................");
+        this.dots.add("..............");
+        this.dots.add(".......................");
+        this.dots.add("..............");
+        this.dots.add(".......................");
+        this.dots.add("..............");
+        this.dots.add(".......................");
         printMenu();
     }
 
-    public static void printMenu() {
+    public void printMenu() {
     System.out.println("---------------------------------------------------------------------------");
     System.out.println("|                                                                         |");
     System.out.println("|                       " + "MARIOS PIZZA BAR" + "                        |");
     System.out.println("|                                                                         |");
+    for (int i = 0; i < pizzaList.size(); i++) {
+        Pizza pizza = this.pizzaList.get(i);
+        String dots = this.dots.get(i);
+
+        System.out.println("| " + pizza.menuString(pizza.getIsNyhed(), dots) + " |");
+    }
+
 
     }
 }

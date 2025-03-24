@@ -49,10 +49,10 @@ public class FileHandling {
             e.printStackTrace();
         }
     }
-    /*
+
     public static void sortFile() {
         File fil = new File("PizzaListe.txt");
-     */
+
 
     }
 

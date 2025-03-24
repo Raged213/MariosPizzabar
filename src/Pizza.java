@@ -7,8 +7,10 @@ public class Pizza {
     private int price;
     private boolean isNyhed;
 
-    public Pizza(String name, String ingredients, int price) {
+    public Pizza(int pizzaNummer, String name, boolean isNyhed, String ingredients, int price) {
+        this.pizzaNummer = pizzaNummer;
         this.name = name;
+        this.isNyhed = isNyhed;
         this.ingredients = ingredients;
         this.price = price;
     }
@@ -54,7 +56,16 @@ this.price = price;
     }
 
 
+    public String menuString(boolean isNyhed, String dots) {
+        if (isNyhed == true) {
+            return pizzaNummer + name + "NYHED" + ingredients + dots + price;
+        } else {
+        return pizzaNummer + name + ingredients + dots + price;
+        }
+    }
+
     public String toString() {
 return name + ingredients + price;
     }
+
 }
