@@ -1,3 +1,4 @@
+import java.awt.*;
 import java.util.Scanner;
 public class PizzaBarMain {
 
@@ -36,6 +37,7 @@ public class PizzaBarMain {
                 case 3:                  // 3. Slet ordre
                     break;
                 case 4:                  // 4. Vis statistik
+                    MenuController.statisticMenu();
                     break;
                 case 5:                  // 5. Opret ny pizza
                     Pizza newPizza = PizzaBarController.createPizza();
