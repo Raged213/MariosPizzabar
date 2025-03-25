@@ -24,6 +24,7 @@ while (running) {
     System.out.println("5. Vis statistik for mest sold uge ");
     System.out.println("6. Vis statistik for mest sold måned ");
     System.out.println("7. Vis statistik for mest sold år");
+    System.out.println("8. Gå tilbage til main menu: ");
 
     if (!scanner.hasNextInt()){
         System.out.println("Ugyldigt input!");
@@ -48,8 +49,7 @@ while (running) {
         case 7:
             break;
         case 8:
-            running = false;
-            System.out.println("Vis statistik afslutes! ");
+            PizzaBarMain.run();
             break;
 
     }
