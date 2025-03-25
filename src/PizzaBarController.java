@@ -4,25 +4,33 @@ import java.util.Scanner;
 public class PizzaBarController {
 
     public static ArrayList<Order> orderList = new ArrayList<>();
-
+    public static int ordreNr = -1;
     public static void createOrder() {
-        int ordNr = 0;
-        //int X =+ X + 1;
+
         Scanner sc = new Scanner(System.in);
         Order x = new Order();
-        ordNr = +ordNr + 1;
-        x.setOrdreNummer(ordNr);
+        ordreNr++;
+        x.setOrdreNummer(ordreNr);
+
         System.out.print("Kunde navn:");
         String navn = sc.nextLine();
         x.setNavn(navn);
-        System.out.print("Pizzanummer:");
-        int PizzaNummer = sc.nextInt();
-        x.setPizzaNummer(PizzaNummer);
-        sc.nextLine();
+
+        while (true) {
+            System.out.print("Pizzanummer: " + PizzaBarMain.green + "(tryk \"-1\" for at gå videre!) " + PizzaBarMain.reset);
+            int PizzaNummer = sc.nextInt();
+            if (PizzaNummer == -1) break;
+            x.setPizzaNummer(PizzaNummer);
+        }
+        sc.nextLine();      // nextInt laver automatisk en ny linje. denne linje rydder den
+
         System.out.print("Afhentnings Tidspunkt:");
         String AfhentningsTidspunkt = sc.nextLine();
         x.setAfhentningsTidspunkt(AfhentningsTidspunkt);
+
         addToList(x);
+
+        System.out.println("Ordre oprettet med ordrenummer: " + x);
     }
 
     public static void addToList(Order ordre) {
@@ -40,10 +48,10 @@ public class PizzaBarController {
         Scanner scan = new Scanner(System.in);
 
         while (y) {
-            System.out.println("Hvilken ordre vil du gerne slette: \n" + orderList);
+            System.out.println("Hvilken ordre vil du gerne afslutte: \n" + orderList);
             int save = scan.nextInt();
             scan.nextLine();
-            System.out.println("Er du sikker på at du vil gemme: (" + save + ")" + " (y/s)");
+            System.out.println("Er du sikker på at du vil gemme: ("+ save +")" + " (y/s)");
             String accept = scan.nextLine();
 
             if (accept.equalsIgnoreCase("y")) {
