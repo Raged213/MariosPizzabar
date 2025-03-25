@@ -3,14 +3,14 @@ import java.util.ArrayList;
 public class Order {
     private int ordreNummer;
     private String navn;
-    private int pizzaNummer;
+    private ArrayList<Integer> pizzaNumre = new ArrayList<>();
     private String afhentningsTidspunkt;
     private ArrayList<Order> ordreListe;
 
-    public Order(String navn, int pizzaNummer, boolean afhteningsTidspunkt, int ordreNummer) {
+    public Order(String navn, int pizzaNummer, String afhteningsTidspunkt, int ordreNummer) {
         this.ordreNummer = ordreNummer;
         this.navn = navn;
-        this.pizzaNummer = pizzaNummer;
+        this.pizzaNumre.add(pizzaNummer);
         this.afhentningsTidspunkt = afhentningsTidspunkt;
     }
 
@@ -23,11 +23,11 @@ public class Order {
     public String getNavn() {
         return navn;
     }
-
-    public int getPizzaNummer() {
-        return pizzaNummer;
+    /*
+    public int getPizzaNumre() {
+        return String.valueOf(pizzaNumre.get(pizzaNumre));
     }
-
+    */
     public String getAfhentningsTidspunkt() {
         return afhentningsTidspunkt;
     }
@@ -41,7 +41,7 @@ public class Order {
     }
 
     public void setPizzaNummer(int pizzaNummer) {
-        this.pizzaNummer = pizzaNummer;
+        this.pizzaNumre.add(pizzaNummer);
     }
 
     public void setAfhentningsTidspunkt(String afhentningsTidspunkt) {
@@ -52,7 +52,7 @@ public class Order {
     public String toString() {
         return "\nOrdrenummer: " + ordreNummer + "\n" +
                 "Navn: " + navn + "\t" +
-                "Pizzanummer: " + pizzaNummer + "\t" +
+                "Pizzanummer: " + pizzaNumre + "\t" +
                 "Afhentningstidspunkt: " + afhentningsTidspunkt + "\n";
     }
 }

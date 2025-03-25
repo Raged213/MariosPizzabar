@@ -35,6 +35,7 @@ public class PizzaBarMain {
                     PizzaBarController.saveOrder();
                     break;
                 case 3:                  // 3. Slet ordre
+                    PizzaBarController.removeOrder();
                     break;
                 case 4:                  // 4. Vis statistik
                     MenuController.statisticMenu();

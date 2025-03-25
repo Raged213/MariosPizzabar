@@ -4,25 +4,34 @@ import java.util.Scanner;
 public class PizzaBarController {
 
     public static ArrayList<Order> orderList = new ArrayList<>();
+    public static int ordreNr = -1;
 
     public static void createOrder() {
-        int ordNr = 0;
-        //int X =+ X + 1;
+
         Scanner sc = new Scanner(System.in);
         Order x = new Order();
-        ordNr = +ordNr + 1;
-        x.setOrdreNummer(ordNr);
+        ordreNr++;
+        x.setOrdreNummer(ordreNr);
+
         System.out.print("Kunde navn:");
         String navn = sc.nextLine();
         x.setNavn(navn);
-        System.out.print("Pizzanummer:");
-        int PizzaNummer = sc.nextInt();
-        x.setPizzaNummer(PizzaNummer);
-        sc.nextLine();
+
+        while (true) {
+            System.out.print("Pizzanummer: " + PizzaBarMain.green + "(tryk \"-1\" for at gå videre!) " + PizzaBarMain.reset);
+            int PizzaNummer = sc.nextInt();
+            if (PizzaNummer == -1) break;
+            x.setPizzaNummer(PizzaNummer);
+        }
+        sc.nextLine();      // nextInt laver automatisk en ny linje. denne linje rydder den
+
         System.out.print("Afhentnings Tidspunkt:");
         String AfhentningsTidspunkt = sc.nextLine();
         x.setAfhentningsTidspunkt(AfhentningsTidspunkt);
+
         addToList(x);
+
+        System.out.println("Ordre oprettet med ordrenummer: " + x);
     }
 
     public static void addToList(Order ordre) {
@@ -32,15 +41,33 @@ public class PizzaBarController {
     }
 
     public static void removeOrder() {
+        boolean y = true;
+        Scanner scan = new Scanner(System.in);
 
+        while (y) {
+            System.out.println("Hvilken ordre vil du gerne slette: \n" + orderList);
+            int valg = scan.nextInt();
+            scan.nextLine();
+            System.out.println(PizzaBarMain.red + "Er du sikker på at du vil slette: (" + valg + ")" + " (y/s)" + PizzaBarMain.reset);
+            String accept = scan.nextLine();
+
+            if (accept.equalsIgnoreCase("y")) {
+                orderList.remove(valg);
+                y = false;
+                System.out.println(PizzaBarMain.red + "Ordre: " + valg + " er nu slettet" + PizzaBarMain.reset);
+            } else {
+                continue;
+            }
+        }
     }
+
 
     public static void saveOrder() {
         boolean y = true;
         Scanner scan = new Scanner(System.in);
 
         while (y) {
-            System.out.println("Hvilken ordre vil du gerne slette: \n" + orderList);
+            System.out.println("Hvilken ordre vil du gerne afslutte: \n" + orderList);
             int save = scan.nextInt();
             scan.nextLine();
             System.out.println("Er du sikker på at du vil gemme: (" + save + ")" + " (y/s)");
@@ -70,7 +97,7 @@ public class PizzaBarController {
         String name = scanner.nextLine();
 
         //Er det en nyhed
-        System.out.print("Er det en nyhed?: (True/false) ");
+        System.out.print("Er det en nyhed?: (true/false) ");
         boolean isNyhed = scanner.nextBoolean();
         scanner.nextLine();
 
@@ -92,7 +119,7 @@ public class PizzaBarController {
             }
         }
 
-        Pizza newPizza = new Pizza(pizzaNummer,name,isNyhed,ingredients,price);
+        Pizza newPizza = new Pizza(pizzaNummer, name, isNyhed, ingredients, price);
         System.out.println("Pizza Tilføjet: " + newPizza.getName());
 
         return newPizza;

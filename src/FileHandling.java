@@ -33,9 +33,9 @@ public class FileHandling {
             e.printStackTrace();
         }
     }
-    public static void readFile() {
+    public static void readFile(String path) {
         try {
-            File fil = new File("PizzaListe.txt");
+            File fil = new File(path);
             Scanner myReader = new Scanner(fil);
             while (myReader.hasNextLine()) {
                 String data = myReader.nextLine();
@@ -50,8 +50,8 @@ public class FileHandling {
         }
     }
 
-    public static void sortFile() {
-        File fil = new File("PizzaListe.txt");
+    public static void sortFile(String path) {
+        File fil = new File(path);
 
 
     }
