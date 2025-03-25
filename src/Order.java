@@ -50,9 +50,9 @@ public class Order {
 
     @Override
     public String toString() {
-        return "Ordrenummer: " + ordreNummer + "\n" +
-                "Navn: " + navn + "\n" +
-                "Pizzanummer: " + pizzaNummer + "\n" +
+        return "\nOrdrenummer: " + ordreNummer + "\n" +
+                "Navn: " + navn + "\t" +
+                "Pizzanummer: " + pizzaNummer + "\t" +
                 "Afhentningstidspunkt: " + afhentningsTidspunkt + "\n";
     }
 }

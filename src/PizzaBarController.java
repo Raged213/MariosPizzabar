@@ -3,40 +3,60 @@ import java.util.Scanner;
 
 public class PizzaBarController {
 
+    public static ArrayList<Order> orderList = new ArrayList<>();
 
-public static void creatOrder(){
-    int ordNr = 0;
-    //int X =+ X + 1;
-    Scanner sc = new Scanner(System.in);
-    Order x = new Order();
-    ordNr =+ ordNr + 1;
-    x.setOrdreNummer(ordNr);
-    System.out.print("Kunde navn:");
-    String navn = sc.nextLine();
-    x.setNavn(navn);
-    System.out.print("Pizzanummer:");
-    int PizzaNummer = sc.nextInt();
-    x.setPizzaNummer(PizzaNummer);
-    System.out.print("Afhentnings Tidspunkt:");
-    String AfhentningsTidspunkt = sc.nextLine();
-    x.setAfhentningsTidspunkt(AfhentningsTidspunkt);
-    addToList(x);
-}
+    public static void createOrder() {
+        int ordNr = 0;
+        //int X =+ X + 1;
+        Scanner sc = new Scanner(System.in);
+        Order x = new Order();
+        ordNr = +ordNr + 1;
+        x.setOrdreNummer(ordNr);
+        System.out.print("Kunde navn:");
+        String navn = sc.nextLine();
+        x.setNavn(navn);
+        System.out.print("Pizzanummer:");
+        int PizzaNummer = sc.nextInt();
+        x.setPizzaNummer(PizzaNummer);
+        sc.nextLine();
+        System.out.print("Afhentnings Tidspunkt:");
+        String AfhentningsTidspunkt = sc.nextLine();
+        x.setAfhentningsTidspunkt(AfhentningsTidspunkt);
+        addToList(x);
+    }
 
-public static void addToList(Order ordre){
-    ArrayList<Order> orderList = new ArrayList<>();
-    orderList.add(ordre);
-    System.out.println(orderList);
+    public static void addToList(Order ordre) {
+        orderList.add(ordre);
+        System.out.println(orderList);
 
-}
+    }
 
-public static void removeOrder(){
+    public static void removeOrder() {
 
-}
+    }
 
-public static void saveOrder(){
+    public static void saveOrder() {
+        boolean y = true;
+        Scanner scan = new Scanner(System.in);
 
-}
+        while (y) {
+            System.out.println("Hvilken ordre vil du gerne slette: \n" + orderList);
+            int save = scan.nextInt();
+            scan.nextLine();
+            System.out.println("Er du sikker på at du vil gemme: (" + save + ")" + " (y/s)");
+            String accept = scan.nextLine();
+
+            if (accept.equalsIgnoreCase("y")) {
+                String saveOrder = String.valueOf(orderList.get(save));
+                FileHandling.writeToFile(saveOrder, "OrdreListe.txt");
+                y = false;
+                System.out.println(PizzaBarMain.green + "Ordre: " + save + " er nu markeret som færdig!" + PizzaBarMain.reset);
+            } else {
+                continue;
+            }
+        }
+    }
+
 
     public static Pizza createPizza() {
         Scanner scanner = new Scanner(System.in);
@@ -50,7 +70,7 @@ public static void saveOrder(){
         scanner.nextLine();
 
         //Er det en nyhed
-        System.out.print("Er det en ny hed?: (True/false) ");
+        System.out.print("Er det en nyhed?: (True/false) ");
         boolean isNyhed = scanner.nextBoolean();
         scanner.nextLine();
 
@@ -76,14 +96,11 @@ public static void saveOrder(){
         System.out.println("Pizza Tilføjet: " + newPizza);
 
         return newPizza;
-        }
+    }
 
-public static void editPizza(){
+    public static void editPizza() {
 
-}
-
-
-
+    }
 
 
 }
