@@ -58,7 +58,7 @@ this.price = price;
 
     public String menuString(boolean isNyhed, String dots) {
         if (isNyhed == true) {
-            return pizzaNummer + name + "NYHED" + ingredients + dots + price;
+            return pizzaNummer + name + " NYHED " + ingredients + dots + price;
         } else {
         return pizzaNummer + ". " + name + ": " + ingredients + dots + price + ",-";
         }

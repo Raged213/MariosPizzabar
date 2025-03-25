@@ -50,7 +50,7 @@ public class PizzaMenu {
         if (pizza != null){
             pizzaList.add(pizza);
             dots.add(".....................");
-            System.out.println(pizza.getName());
+            printMenu();
         } else {
             System.out.println("Fejl! kunne ikke register pizzaen! ");
         }
@@ -60,7 +60,7 @@ public class PizzaMenu {
     public void printMenu() {
     System.out.println("----------------------------------------------------------------");
     System.out.println("|                                                              |");
-    System.out.println("|                                 " + "PIZZAER" + "                                  |");
+    System.out.println("|                                 " + " PIZZAER " + "                                  |");
     System.out.println("|                                                                                     |");
         for (int i = 0; i < pizzaList.size(); i++) {
             Pizza pizza = pizzaList.get(i);

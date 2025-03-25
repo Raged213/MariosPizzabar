@@ -63,11 +63,11 @@ public class PizzaBarController {
         //Enter pizzas number
         System.out.print("Indtast pizza nummer: ");
         int pizzaNummer = scanner.nextInt();
+        scanner.nextLine();
 
         //Enter Pizzas navn
         System.out.print("Indtast pizza navn: ");
         String name = scanner.nextLine();
-        scanner.nextLine();
 
         //Er det en nyhed
         System.out.print("Er det en nyhed?: (True/false) ");
@@ -93,7 +93,7 @@ public class PizzaBarController {
         }
 
         Pizza newPizza = new Pizza(pizzaNummer,name,isNyhed,ingredients,price);
-        System.out.println("Pizza Tilføjet: " + newPizza);
+        System.out.println("Pizza Tilføjet: " + newPizza.getName());
 
         return newPizza;
     }
