@@ -9,81 +9,107 @@ public class PizzaBarController {
     public static void createOrder() {
 
         Scanner sc = new Scanner(System.in);
-        Order x = new Order();
-        ordreNr++;
-        x.setOrdreNummer(ordreNr);
 
         System.out.print("Kunde navn:");
-        String navn = sc.nextLine();
-        x.setNavn(navn);
+        if (sc.hasNextInt()) {
+            System.out.println(PizzaBarMain.red + "Ugyldigt input! Du skal skrive et navn!" + PizzaBarMain.reset);
+            sc.nextLine();
+        } else {
 
-        while (true) {
-            System.out.print("Pizzanummer: " + PizzaBarMain.green + "(tryk \"-1\" for at gå videre!) " + PizzaBarMain.reset);
-            int PizzaNummer = sc.nextInt();
-            if (PizzaNummer == -1) break;
-            x.setPizzaNummer(PizzaNummer);
+            Order x = new Order();
+            ordreNr++;
+            x.setOrdreNummer(ordreNr);
+
+            String navn = sc.nextLine();
+            x.setNavn(navn);
+
+            while (true) {
+                System.out.print("Pizzanummer: " + PizzaBarMain.green + "(tryk \"-1\" når du ikke vil tilføje flere pizzanumre!) " + PizzaBarMain.reset);
+                int PizzaNummer = sc.nextInt();
+                if (PizzaNummer == -1) break;
+                x.setPizzaNummer(PizzaNummer);
+            }
+            sc.nextLine();      // rydder linjen
+
+            System.out.print("Afhentnings Tidspunkt:");
+            String AfhentningsTidspunkt = sc.nextLine();
+            x.setAfhentningsTidspunkt(AfhentningsTidspunkt);
+
+            addToList(x);
+
+            System.out.println("Ordre oprettet med ordrenummer: " + ordreNr);
         }
-        sc.nextLine();      // nextInt laver automatisk en ny linje. denne linje rydder den
-
-        System.out.print("Afhentnings Tidspunkt:");
-        String AfhentningsTidspunkt = sc.nextLine();
-        x.setAfhentningsTidspunkt(AfhentningsTidspunkt);
-
-        addToList(x);
-
-        System.out.println("Ordre oprettet med ordrenummer: " + x);
     }
 
     public static void addToList(Order ordre) {
         orderList.add(ordre);
-        System.out.println(orderList);
 
     }
 
     public static void removeOrder() {
-        boolean y = true;
         Scanner scan = new Scanner(System.in);
+        boolean found = false;
 
-        while (y) {
-            System.out.println("Hvilken ordre vil du gerne slette: \n" + orderList);
-            int valg = scan.nextInt();
-            scan.nextLine();
+        System.out.println("Hvilken ordre vil du gerne slette: \n" + orderList);
+        int valg = scan.nextInt();
+        scan.nextLine();
+
+        // Finder indeks for ordrenummeret
+        Order orderToRemove = null;
+        for (Order o : orderList) {
+            if (o.getOrdreNummer() == valg) { // Finder den rigtige ordre
+                orderToRemove = o;
+                break;
+            }
+        }
+
+        // Hvis ordrenummeret er fundet
+        if (orderToRemove != null) {
             System.out.println(PizzaBarMain.red + "Er du sikker på at du vil slette: (" + valg + ")" + " (y/s)" + PizzaBarMain.reset);
             String accept = scan.nextLine();
 
             if (accept.equalsIgnoreCase("y")) {
-                orderList.remove(valg);
-                y = false;
-                System.out.println(PizzaBarMain.red + "Ordre: " + valg + " er nu slettet" + PizzaBarMain.reset);
-            } else {
-                continue;
+                orderList.remove(orderToRemove);
+                System.out.println(PizzaBarMain.green + "Ordre: " + valg + " er nu slettet" + PizzaBarMain.reset);
             }
+        } else {
+            System.out.println(PizzaBarMain.red + "Ordrenummeret findes ikke!" + PizzaBarMain.reset);
         }
     }
 
-
     public static void saveOrder() {
-        boolean y = true;
         Scanner scan = new Scanner(System.in);
+        boolean found = false;
 
-        while (y) {
-            System.out.println("Hvilken ordre vil du gerne afslutte: \n" + orderList);
-            int save = scan.nextInt();
-            scan.nextLine();
-            System.out.println("Er du sikker på at du vil gemme: (" + save + ")" + " (y/s)");
+        System.out.println("Hvilken ordre vil du gerne markere som færdig: \n" + orderList);
+        int save = scan.nextInt();
+        scan.nextLine();
+
+        // Finder indeks for ordrenummeret
+        Order orderToSave = null;
+        for (Order o : orderList) {
+            if (o.getOrdreNummer() == save) { // Finder den rigtige ordre
+                orderToSave = o;
+                break;
+            }
+        }
+
+        // Hvis ordrenummeret er fundet
+        if (orderToSave != null) {
+            System.out.println(PizzaBarMain.red + "Er du sikker på at du vil markere som færdig: (" + save + ")" + " (y/s)" + PizzaBarMain.reset);
             String accept = scan.nextLine();
 
             if (accept.equalsIgnoreCase("y")) {
-                String saveOrder = String.valueOf(orderList.get(save));
+                String saveOrder = String.valueOf(orderToSave.toString());
                 FileHandling.writeToFile(saveOrder, "OrdreListe.txt");
-                y = false;
-                System.out.println(PizzaBarMain.green + "Ordre: " + save + " er nu markeret som færdig!" + PizzaBarMain.reset);
-            } else {
-                continue;
+                System.out.println(PizzaBarMain.green + "Ordre: " + save + " er nu gemt" + PizzaBarMain.reset);
+                orderList.remove(orderToSave);
             }
+        } else {
+            System.out.println(PizzaBarMain.red + "Ordrenummeret findes ikke!" + PizzaBarMain.reset);
         }
-    }
 
+    }
 
     public static Pizza createPizza() {
         Scanner scanner = new Scanner(System.in);
@@ -120,7 +146,7 @@ public class PizzaBarController {
         }
 
         Pizza newPizza = new Pizza(pizzaNummer, name, isNyhed, ingredients, price);
-        System.out.println("Pizza Tilføjet: " + newPizza.getName());
+        System.out.println(PizzaBarMain.green + "Pizza Tilføjet: " + newPizza.getName() + PizzaBarMain.reset);
         FileHandling.writeToFile(String.valueOf(newPizza), "PizzaListe.txt");
 
         return newPizza;
@@ -130,5 +156,5 @@ public class PizzaBarController {
 
     }
 
-
 }
+

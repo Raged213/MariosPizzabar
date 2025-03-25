@@ -1,5 +1,7 @@
 import java.awt.*;
+import java.util.ArrayList;
 import java.util.Scanner;
+
 public class PizzaBarMain {
 
     public static final String reset = "\u001B[0m";
@@ -8,10 +10,8 @@ public class PizzaBarMain {
     public static final String orangeMain = "\033[38;2;255;165;0m";
 
     public static void main(String[] args) {
-
         FileHandling.createFile("PizzaListe.txt");
         FileHandling.createFile("OrdreListe.txt");
-        PizzaMenu menuKort = new PizzaMenu();
         run();
     }
 
@@ -23,8 +23,16 @@ public class PizzaBarMain {
         boolean y = true;
 
         while (y) {
-            //System.out.println(orderList());
+            System.out.print("\n" + green + "ORDRELISTE:\n" + reset + PizzaBarController.orderList + "\n");
             System.out.println(mainMenu());
+
+            // Tjekker om inputtet er en int
+            if (!scanner.hasNextInt()) {
+                System.out.println("Ugyldigt input!");
+                scanner.nextLine();
+                continue;
+            }
+
             int choice = scanner.nextInt();
 
             switch (choice) {
@@ -54,17 +62,18 @@ public class PizzaBarMain {
         }
     }
 
+
     public static String mainMenu() {
         return orangeMain + "\nMain Menu:" + reset + "\n" +
                 """
-                1. Opret ordre
-                2. Gem ordre (marker som færdig)
-                3. Slet ordre
-                4. Vis statistik
-                
-                5. Opret ny pizza
-                6. ændre pizzapris
-                """ + red +
+                        1. Opret ordre
+                        2. Gem ordre (marker som færdig)
+                        3. Slet ordre
+                        4. Vis statistik
+                        
+                        5. Opret ny pizza
+                        6. ændre pizzapris
+                        """ + red +
                 "7. Slut system" + reset;
     }
 }
