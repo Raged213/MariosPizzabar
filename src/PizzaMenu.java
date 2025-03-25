@@ -6,7 +6,7 @@ public class PizzaMenu {
      List<String> dots;
 
 
-    public void menu() {
+    public  PizzaMenu() {
     pizzaList = new ArrayList<>();
     dots = new ArrayList<>();
     Pizzaer();
@@ -45,27 +45,31 @@ public class PizzaMenu {
         printMenu();
     }
 
+//Adder ny pizzaer til liste
+    public void addPizza ( Pizza pizza){
+        if (pizza != null){
+            pizzaList.add(pizza);
+            dots.add(".....................");
+            System.out.println(pizza.getName());
+        } else {
+            System.out.println("Fejl! kunne ikke register pizzaen! ");
+        }
+    }
+
+
     public void printMenu() {
     System.out.println("----------------------------------------------------------------");
     System.out.println("|                                                              |");
     System.out.println("|                                 " + "PIZZAER" + "                                  |");
     System.out.println("|                                                                                     |");
-    for (int i = 0; i < pizzaList.size(); i++) {
-        Pizza pizza = this.pizzaList.get(i);
-        String dots = this.dots.get(i);
+        for (int i = 0; i < pizzaList.size(); i++) {
+            Pizza pizza = pizzaList.get(i);
+            String dotsStr = (i < dots.size()) ? dots.get(i) : "................"; // Undgå fejl
 
-        System.out.println("| " + pizza.menuString(pizza.getIsNyhed(), dots) + " |");
+            System.out.println("| " + pizza.menuString(pizza.getIsNyhed(), dotsStr) + " |");
     }
 
     }
 
-    public void addPizza ( Pizza pizza){
-        if (pizza != null){
-            pizzaList.add(pizza);
-            dots.add(".....................");
-            System.out.println("Pizza tilføjet: " + pizza.getName());
-        } else {
-            System.out.println("Fejl! kunne ikke register pizzaen! ");
-        }
-    }
+
 }

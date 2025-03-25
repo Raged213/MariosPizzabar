@@ -40,16 +40,17 @@ public static void saveOrder(){
 
     public static Pizza createPizza() {
         Scanner scanner = new Scanner(System.in);
-        //Enter Pizza number
-        System.out.print("Indtast Pizza Number");
-        int pizzaNumber = scanner.nextInt();
+        //Enter pizzas number
+        System.out.print("Indtast pizza nummer: ");
+        int pizzaNummer = scanner.nextInt();
 
         //Enter Pizzas navn
-        System.out.print("Indtast pizza name: ");
+        System.out.print("Indtast pizza navn: ");
         String name = scanner.nextLine();
+        scanner.nextLine();
 
-        //er det en Nyhed?
-        System.out.print("Er det en nyhed? (True/false)");
+        //Er det en nyhed
+        System.out.print("Er det en ny hed?: (True/false) ");
         boolean isNyhed = scanner.nextBoolean();
         scanner.nextLine();
 
@@ -63,18 +64,19 @@ public static void saveOrder(){
             System.out.print("Indtast pris (heltal): ");
             if (scanner.hasNextInt()) {
                 price = scanner.nextInt();
-                scanner.nextLine();
+                scanner.nextLine(); // Fjerner newline
                 break;
             } else {
-                System.out.println("Fejl! Indtast gerne et heltal.");
+                System.out.println("Kan ikke register øre, prøve igen med hele nummer! ");
                 scanner.nextLine();
             }
         }
 
-        Pizza newPizza = new Pizza(pizzaNumber, name, isNyhed, ingredients, price);
-        System.out.println("✅ Ny pizza oprettet: " + newPizza);
+        Pizza newPizza = new Pizza(pizzaNummer, name, isNyhed, ingredients, price);
+        System.out.println("Pizza Tilføjet: " + newPizza);
+
         return newPizza;
-    }
+        }
 
 public static void editPizza(){
 
