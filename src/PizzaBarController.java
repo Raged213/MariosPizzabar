@@ -17,6 +17,7 @@ public static void createOrder(){
     System.out.print("Pizzanummer:");
     int PizzaNummer = sc.nextInt();
     x.setPizzaNummer(PizzaNummer);
+    sc.nextLine();
     System.out.print("Afhentnings Tidspunkt:");
     String AfhentningsTidspunkt = sc.nextLine();
     x.setAfhentningsTidspunkt(AfhentningsTidspunkt);
@@ -37,7 +38,7 @@ public static void removeOrder(){
 public static void saveOrder(){
 
 }
-
+/*
     public static Pizza createPizza() {
         Scanner scanner = new Scanner(System.in);
         //Enter Pizzas navn
@@ -66,7 +67,7 @@ public static void saveOrder(){
 
         return newPizza;
         }
-
+*/
 public static void editPizza(){
 
 }

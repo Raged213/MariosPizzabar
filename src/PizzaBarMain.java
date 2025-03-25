@@ -4,7 +4,7 @@ public class PizzaBarMain {
     private static final String reset = "\u001B[0m";
     private static final String red = "\u001B[1;31m";
     private static final String green = "\u001B[32m";
-    private static final String orangeMain = "\033[38;1;255;165;0m";
+    private static final String orangeMain = "\033[38;2;255;165;0m";
 
     public static void main(String[] args) {
 
@@ -20,7 +20,7 @@ public class PizzaBarMain {
         boolean y = true;
 
         while (y) {
-            //System.out.println(OrderList());
+            //System.out.println(orderList());
             System.out.println(mainMenu());
             int choice = scanner.nextInt();
 
@@ -28,15 +28,17 @@ public class PizzaBarMain {
                 case 1:                  // 1. Opret ordre
                     PizzaBarController.createOrder();
                     break;
-                case 2:                  // 2. Slet ordre
+                case 2:                  // 2. Gem ordre (marker som færdig)
                     break;
-                case 3:                  // 3. Vis statistik
+                case 3:                  // 3. Slet ordre
                     break;
-                case 4:                  // 4. Opret ny pizza
+                case 4:                  // 4. Vis statistik
                     break;
-                case 5:                  // 5. ændre pizzapris
+                case 5:                  // 5. Opret ny pizza
                     break;
-                case 6:                  // 6. Slut system
+                case 6:                  // 6. ændre pizzapris
+                    break;
+                case 7:                  // 7. Slut system
                     y = false;
                     System.out.println(red + "\nSystemet sluttes" + reset);
                     break;
@@ -45,15 +47,16 @@ public class PizzaBarMain {
     }
 
     public static String mainMenu() {
-        return orangeMain + "Main Menu" + reset + ":" +
+        return orangeMain + "\nMain Menu:" + reset + "\n" +
                 """
                 1. Opret ordre
-                2. Slet ordre
-                3. Vis statistik
+                2. Gem ordre (marker som færdig)
+                3. Slet ordre
+                4. Vis statistik
                 
-                4. Opret ny pizza
-                5. ændre pizzapris
+                5. Opret ny pizza
+                6. ændre pizzapris
                 """ + red +
-                "6. Slut system" + reset;
+                "7. Slut system" + reset;
     }
 }
