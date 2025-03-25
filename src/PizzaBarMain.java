@@ -1,13 +1,16 @@
 import java.util.Scanner;
 public class PizzaBarMain {
 
-    private static final String reset = "\u001B[0m";
-    private static final String red = "\u001B[1;31m";
-    private static final String green = "\u001B[32m";
-    private static final String orangeMain = "\033[38;2;255;165;0m";
+    public static final String reset = "\u001B[0m";
+    public static final String red = "\u001B[1;31m";
+    public static final String green = "\u001B[32m";
+    public static final String orangeMain = "\033[38;2;255;165;0m";
 
     public static void main(String[] args) {
-        FileHandling.createFile();
+
+        FileHandling.createFile("PizzaListe.txt");
+        FileHandling.createFile("OrdreListe.txt");
+        PizzaMenu menuKort = new PizzaMenu();
         run();
     }
 
@@ -25,9 +28,10 @@ public class PizzaBarMain {
 
             switch (choice) {
                 case 1:                  // 1. Opret ordre
-                    PizzaBarController.creatOrder();
+                    PizzaBarController.createOrder();
                     break;
                 case 2:                  // 2. Gem ordre (marker som færdig)
+                    PizzaBarController.saveOrder();
                     break;
                 case 3:                  // 3. Slet ordre
                     break;
