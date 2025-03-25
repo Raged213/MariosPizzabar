@@ -60,7 +60,7 @@ this.price = price;
         if (isNyhed == true) {
             return pizzaNummer + name + "NYHED" + ingredients + dots + price;
         } else {
-        return pizzaNummer + name + ingredients + dots + price;
+        return pizzaNummer + ". " + name + ": " + ingredients + dots + price + ",-";
         }
     }
 

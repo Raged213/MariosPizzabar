@@ -6,7 +6,7 @@ public class PizzaMenu {
      List<String> dots;
 
 
-public void menu() {
+    public void menu() {
     pizzaList = new ArrayList<>();
     dots = new ArrayList<>();
     Pizzaer();
@@ -28,28 +28,28 @@ public void menu() {
         pizzaList.add(new Pizza(13, "Venezia", false, "tomatsauce, ost, skinke, bacon og oregano", 61));
         pizzaList.add(new Pizza(14, "Mafia", true, "tomatsauce, ost, pepperoni, bacon, løg og oregano", 61));
 
-        this.dots.add("..............");
-        this.dots.add(".......................");
-        this.dots.add("..............");
-        this.dots.add(".......................");
-        this.dots.add("..............");
-        this.dots.add(".......................");
-        this.dots.add("..............");
-        this.dots.add(".......................");
-        this.dots.add("..............");
-        this.dots.add(".......................");
-        this.dots.add("..............");
-        this.dots.add(".......................");
-        this.dots.add("..............");
-        this.dots.add(".......................");
+        this.dots.add("........................................");
+        this.dots.add("............................");
+        this.dots.add(".................................");
+        this.dots.add("........");
+        this.dots.add(".............");
+        this.dots.add("...........................................");
+        this.dots.add(".....................");
+        this.dots.add("..................");
+        this.dots.add("...................");
+        this.dots.add("..........................");
+        this.dots.add(".......................................");
+        this.dots.add("....................................");
+        this.dots.add("......................................");
+        this.dots.add("..........................");
         printMenu();
     }
 
     public void printMenu() {
-    System.out.println("---------------------------------------------------------------------------");
-    System.out.println("|                                                                         |");
-    System.out.println("|                       " + "MARIOS PIZZA BAR" + "                        |");
-    System.out.println("|                                                                         |");
+    System.out.println("----------------------------------------------------------------");
+    System.out.println("|                                                              |");
+    System.out.println("|                                 " + "PIZZAER" + "                                  |");
+    System.out.println("|                                                                                     |");
     for (int i = 0; i < pizzaList.size(); i++) {
         Pizza pizza = this.pizzaList.get(i);
         String dots = this.dots.get(i);
@@ -57,7 +57,15 @@ public void menu() {
         System.out.println("| " + pizza.menuString(pizza.getIsNyhed(), dots) + " |");
     }
 
-
     }
 
+    public void addPizza ( Pizza pizza){
+        if (pizza != null){
+            pizzaList.add(pizza);
+            dots.add(".....................");
+            System.out.println("Pizza tilføjet: " + pizza.getName());
+        } else {
+            System.out.println("Fejl! kunne ikke register pizzaen! ");
+        }
+    }
 }

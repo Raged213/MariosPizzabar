@@ -40,32 +40,41 @@ public static void saveOrder(){
 
     public static Pizza createPizza() {
         Scanner scanner = new Scanner(System.in);
+        //Enter Pizza number
+        System.out.print("Indtast Pizza Number");
+        int pizzaNumber = scanner.nextInt();
+
         //Enter Pizzas navn
-        System.out.print("Enter pizza name: ");
+        System.out.print("Indtast pizza name: ");
         String name = scanner.nextLine();
 
+        //er det en Nyhed?
+        System.out.print("Er det en nyhed? (True/false)");
+        boolean isNyhed = scanner.nextBoolean();
+        scanner.nextLine();
+
         //Enter Pizzas ingredients
-        System.out.print("Enter ingredients: ");
+        System.out.print("Indtast ingredients: ");
         String ingredients = scanner.nextLine();
 
         //Enter prisen på pizza
         int price;
-        while(true) {
-            System.out.print("Enter prisen på pizza, hele nummer!: ");
-            if (scanner.hasNextInt()){
+        while (true) {
+            System.out.print("Indtast pris (heltal): ");
+            if (scanner.hasNextInt()) {
+                price = scanner.nextInt();
                 scanner.nextLine();
                 break;
-            }else {
-                System.out.println("Kan ikke register øre, prøve igen med hele nummer! ");
+            } else {
+                System.out.println("Fejl! Indtast gerne et heltal.");
                 scanner.nextLine();
             }
         }
 
-        Pizza newPizza = new Pizza(name, ingredients, price);
-        System.out.println("Pizza created: " + newPizza);
-
+        Pizza newPizza = new Pizza(pizzaNumber, name, isNyhed, ingredients, price);
+        System.out.println("✅ Ny pizza oprettet: " + newPizza);
         return newPizza;
-        }
+    }
 
 public static void editPizza(){
 
