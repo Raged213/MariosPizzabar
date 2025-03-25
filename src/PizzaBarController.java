@@ -121,6 +121,7 @@ public class PizzaBarController {
 
         Pizza newPizza = new Pizza(pizzaNummer, name, isNyhed, ingredients, price);
         System.out.println("Pizza Tilføjet: " + newPizza.getName());
+        FileHandling.writeToFile(String.valueOf(newPizza), "PizzaListe.txt");
 
         return newPizza;
     }
