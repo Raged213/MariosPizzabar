@@ -4,7 +4,7 @@ import java.util.Scanner;
 public class PizzaBarController {
 
 
-public static void creatOrder(){
+public static void createOrder(){
     int ordNr = 0;
     //int X =+ X + 1;
     Scanner sc = new Scanner(System.in);
