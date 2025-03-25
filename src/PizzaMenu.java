@@ -7,8 +7,8 @@ public class PizzaMenu {
 
 
     public  PizzaMenu() {
-    pizzaList = new ArrayList<>();
-    dots = new ArrayList<>();
+    this.pizzaList = new ArrayList<>();
+    this.dots = new ArrayList<>();
     Pizzaer();
 }
 

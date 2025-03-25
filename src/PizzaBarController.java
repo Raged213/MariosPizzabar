@@ -72,7 +72,7 @@ public static void saveOrder(){
             }
         }
 
-        Pizza newPizza = new Pizza(pizzaNummer, name, isNyhed, ingredients, price);
+        Pizza newPizza = new Pizza(pizzaNummer,name,isNyhed,ingredients,price);
         System.out.println("Pizza Tilføjet: " + newPizza);
 
         return newPizza;
