@@ -1,5 +1,6 @@
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.time.LocalDate;
 import java.util.ArrayList;
 
 public class Order {
@@ -7,6 +8,7 @@ public class Order {
     private String navn;
     public ArrayList<Integer> pizzaNumre = new ArrayList<>();
     private String afhentningsTidspunkt;
+    private LocalDate dag;
     private ArrayList<Order> ordreListe;
 
     public Order(String navn, int pizzaNummer, String afhteningsTidspunkt, int ordreNummer) {
@@ -14,6 +16,7 @@ public class Order {
         this.navn = navn;
         this.pizzaNumre.add(pizzaNummer);
         this.afhentningsTidspunkt = afhentningsTidspunkt;
+        this.dag = LocalDate.now();
     }
 
     public Order(){}
@@ -50,9 +53,13 @@ public class Order {
         this.afhentningsTidspunkt = afhentningsTidspunkt;
     }
 
+    public LocalDate getDato() {
+        return LocalDate.now();
+    }
+
     @Override
     public String toString() {
-        return "\nOrdrenummer: " + ordreNummer + "\n" +
+        return "\nOrdrenummer: " + ordreNummer + "\tdato: " + dag + "\n" +
                 "Navn: " + navn + "\t" +
                 "Pizzanummer: " + pizzaNumre + "\t" +
                 "Afhentningstidspunkt: " + afhentningsTidspunkt + "\n";
