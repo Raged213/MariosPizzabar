@@ -23,24 +23,36 @@ public class StatisticController {
     }
 
     private static int[] countSales(String filePath, String dateFilter) {
-        int[] pizzaSales = new int[25]; // Antager max 25 forskellige pizzaer
+        int[] pizzaSales = new int[25]; // Hvor mange af samme pizza der kan blive solgt
 
         try {
             File file = new File(filePath);
             Scanner scanner = new Scanner(file);
+            boolean isOrderRelevant = false;
 
             while (scanner.hasNextLine()) {
-                String line = scanner.nextLine();
-                String[] parts = line.split(",");
+                String line = scanner.nextLine().trim();
 
-                if (parts.length >= 3) {
-                    String date = parts[2];
-                    if (date.startsWith(dateFilter)) {
-                        int pizzaNum = Integer.parseInt(parts[1]);
-                        if (pizzaNum > 0 && pizzaNum < pizzaSales.length) {
-                            pizzaSales[pizzaNum]++;
+                if (line.startsWith("Ordrenummer: ")) {
+                    isOrderRelevant = line.contains(dateFilter);
+                }
+
+                if (isOrderRelevant && line.startsWith("Navn: ")) {
+                    int startIndex = line.indexOf("[");
+                    int endIndex = line.indexOf("]");
+
+                    if (startIndex != -1 && endIndex != -1) {
+                        String pizzaNumbers = line.substring(startIndex + 1, endIndex);
+                        String[] numbers = pizzaNumbers.split(", ");
+
+                        for (String num : numbers) {
+                            int pizzaNum = Integer.parseInt(num.trim());
+                            if (pizzaNum > 0 && pizzaNum < pizzaSales.length) {
+                                pizzaSales[pizzaNum]++;
+                            }
                         }
                     }
+                    isOrderRelevant = false;
                 }
             }
             scanner.close();
@@ -50,25 +62,38 @@ public class StatisticController {
 
         return pizzaSales;
     }
+
     private static void findMostSold(String filePath, String dateFilter) {
-        int[] pizzaSales = countSales(filePath, dateFilter);
+        int[] pizzaSales;
+        pizzaSales = countSales(filePath, dateFilter);
 
         System.out.println("\n Salgsstatistik for " + dateFilter + ":");
+
         boolean foundSales = false;
         int maxSold = 0;
+        int mostSold = -1;
 
         for (int i = 0; i < pizzaSales.length; i++) {
             if (pizzaSales[i] > maxSold) {
                 maxSold = pizzaSales[i];
+                mostSold = i;
+            }
+            if (pizzaSales[i] > 0) {
+                foundSales = true;
             }
         }
 
         if (!foundSales) {
             System.out.println("Ingen salg fundet for denne periode");
+        } else {
+            System.out.println("Den mest solgte pizza er " + mostSold + " med " + maxSold + "salg");
+            printSales(pizzaSales);
         }
     }
+
+
     private static void printSales(int[] pizzaSales) {
-        System.out.println("Salgstal:");
+        System.out.println("Salgstal: ");
         for (int i = 0; i < pizzaSales.length; i++) {
             if (pizzaSales[i] > 0) {
                 System.out.println("Pizza " + i + ": " + pizzaSales[i] + " stk solgt");
