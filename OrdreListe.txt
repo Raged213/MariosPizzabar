@@ -1,48 +1,12 @@
 
-Ordrenummer: 2
-Navn: tor	Pizzanummer: [23]	Afhentningstidspunkt: 13
-
-Ordrenummer: 0
-Navn: seb	Pizzanummer: [23, 32]	Afhentningstidspunkt: 15
-
-Ordrenummer: 2
-Navn: Jonas	Pizzanummer: [5, 4, 2]	Afhentningstidspunkt: 16:15
-
-Ordrenummer: 5
-Navn: Mads	Pizzanummer: [23]	Afhentningstidspunkt: 14:15
-
-Ordrenummer: 1
-Navn: Torben	Pizzanummer: [23, 42, 12]	Afhentningstidspunkt: 15:00
-
-Ordrenummer: 3
-Navn: Thor	Pizzanummer: [4, 1, 2]	Afhentningstidspunkt: 16:30
-
-Ordrenummer: 0
-Navn: sd	Pizzanummer: [12]	Afhentningstidspunkt: 12
-
-Ordrenummer: 1
-Navn: baba	Pizzanummer: [22, 12]	Afhentningstidspunkt: 23
-
-Ordrenummer: 1
-Navn: sebasl	Pizzanummer: [1, 2, 3, 4, 5, 6, 7, 8, 9]	Afhentningstidspunkt: 18:00
-
-Ordrenummer: 0
-Navn: seb	Pizzanummer: [32, 21, 21]	Afhentningstidspunkt: hm
-
-Ordrenummer: 0
-Navn: seb	Pizzanummer: [23, 24]	Afhentningstidspunkt: 14:00
-
-Ordrenummer: 1
-Navn: bob	Pizzanummer: [45, 43]	Afhentningstidspunkt: 15:00
-
-Ordrenummer: 0
-Navn: top	Pizzanummer: [21, 32]	Afhentningstidspunkt: 14:00
-
-Ordrenummer: 1
-Navn: tre	Pizzanummer: [32]	Afhentningstidspunkt: 16:00
-
-Ordrenummer: 0	dato: null
-Navn: seb	Pizzanummer: [21]	Afhentningstidspunkt: 14:00
-
 Ordrenummer: 0	Dato: 26-03-2025
-Navn: ser	Pizzanummer: [21, 21]	Afhentningstidspunkt: 15:00
+Navn: Teddy	Pizzanummer: [1, 4, 2]	Afhentningstidspunkt: 17:45
+
+Ordrenummer: 1	Dato: 26-03-2025
+Navn: Jimmy	Pizzanummer: [12]	Afhentningstidspunkt: 18:15
+
+Ordrenummer: 2	Dato: 26-03-2025
+Navn: Sofie	Pizzanummer: [13, 2, 5]	Afhentningstidspunkt: 19:00
+
+Ordrenummer: 3	Dato: 26-03-2025
+Navn: Bobby	Pizzanummer: [14, 12, 2, 5]	Afhentningstidspunkt: 19:45

@@ -86,7 +86,7 @@ public class StatisticController {
         if (!foundSales) {
             System.out.println("Ingen salg fundet for denne periode");
         } else {
-            System.out.println("Den mest solgte pizza er " + mostSold + " med " + maxSold + "salg");
+            System.out.println("Den mest solgte pizza er " + mostSold + " med " + maxSold + " salg");
             printSales(pizzaSales);
         }
     }
