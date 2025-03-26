@@ -67,14 +67,15 @@ this.price = price;
 
     public String menuString(boolean isNyhed, String dots) {
         // Apply orange to pizza name (using your exact color code)
-        String coloredName = Farver.orangeMain + name + Farver.reset;
+        String coloredName = Farver.brown + name + Farver.reset;
+        String priceText = Farver.brown + price + Farver.reset;
 
         if (isNyhed) {
             // Apply green to "NYHED" text (using your exact color code)
-            String nyhedText = Farver.green + "NYHED" + Farver.reset;
-            return pizzaNummer + ". " + coloredName + ": " + nyhedText + " " + ingredients + dots + price + ",-";
+            String nyhedText = Farver.orangeMain + "NYHED" + Farver.reset;
+            return pizzaNummer + ". " + coloredName + ": " + nyhedText + " " + ingredients + dots + priceText + Farver.brown + ",-" + Farver.reset;
         } else {
-            return pizzaNummer + ". " + coloredName + ": " + ingredients + dots + price + ",-";
+            return pizzaNummer + ". " + coloredName + ": " + ingredients + dots + priceText + Farver.brown + ",-" + Farver.reset;
         }
     }
 

@@ -29,19 +29,19 @@ public class PizzaMenu {
         pizzaList.add(new Pizza(14, "Mafia", true, "tomatsauce, ost, pepperoni, bacon, løg og oregano", 61));
 
         this.dots.add("...................................................");
-        this.dots.add(".......................................");
+        this.dots.add("........................................");
         this.dots.add("..............................................");
-        this.dots.add("...............");
-        this.dots.add("..................");
+        this.dots.add("................");
+        this.dots.add("...................");
         this.dots.add(".....................................................");
         this.dots.add(".........................");
         this.dots.add("........................");
-        this.dots.add(".......................");
+        this.dots.add("........................");
         this.dots.add("..................................");
         this.dots.add("............................................");
         this.dots.add(".......................................");
         this.dots.add("...........................................");
-        this.dots.add("..............................");
+        this.dots.add("...............................");
         printMenu();
     }
 
@@ -56,20 +56,19 @@ public class PizzaMenu {
         }
     }
 
-// TEST TEST TEST TEST
     public void printMenu() {
-    System.out.println(" _______________________________________________________________________________________________________");
-    System.out.println("|                                                                                                       |");
-    System.out.println("|                                               " + " PIZZAER " + "                                               |");
-    System.out.println("|                                                                                                       |");
+    System.out.println(Farver.orangeMain + " _______________________________________________________________________________________________________" + Farver.reset);
+    System.out.println(Farver.orangeMain + "|                                                                                                       |" + Farver.reset);
+    System.out.println(Farver.orangeMain + "|                                               " + " PIZZAER " + "                                               |" + Farver.reset);
+    System.out.println(Farver.orangeMain + "|                                                                                                       |" + Farver.reset);
         for (int i = 0; i < pizzaList.size(); i++) {
             Pizza pizza = pizzaList.get(i);
             String dotsStr = (i < dots.size()) ? dots.get(i) : "................"; // Undgå fejl
 
-            System.out.println("| " + pizza.menuString(pizza.getIsNyhed(), dotsStr) + " |");
+            System.out.println(Farver.orangeMain + "| " + Farver.reset + pizza.menuString(pizza.getIsNyhed(), dotsStr) + Farver.orangeMain + " |" + Farver.orangeMain);
     }
-        System.out.println("|                                                                                                       |");
-        System.out.println(" _______________________________________________________________________________________________________");
+        System.out.println(Farver.orangeMain + "|                                                                                                       |" + Farver.reset);
+        System.out.println(Farver.orangeMain + " _______________________________________________________________________________________________________" + Farver.reset);
 
     }
 
