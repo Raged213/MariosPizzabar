@@ -53,13 +53,16 @@ public class Order {
         this.afhentningsTidspunkt = afhentningsTidspunkt;
     }
 
-    public LocalDate getDato() {
-        return LocalDate.now();
+    public String getDato() {
+        DateTimeFormatter dansk = DateTimeFormatter.ofPattern("dd-MM-yyyy");
+        LocalDate dagensDato = LocalDate.now();
+        return dagensDato.format(dansk);
     }
+
 
     @Override
     public String toString() {
-        return "\nOrdrenummer: " + ordreNummer + "\tdato: " + dag + "\n" +
+        return "\nOrdrenummer: " + ordreNummer + "\tDato: " + getDato() + "\n" +
                 "Navn: " + navn + "\t" +
                 "Pizzanummer: " + pizzaNumre + "\t" +
                 "Afhentningstidspunkt: " + afhentningsTidspunkt + "\n";
