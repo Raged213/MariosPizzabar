@@ -7,7 +7,7 @@ public class StatisticController {
 
     public static void mostSoldThisDay(){
         LocalDate today = LocalDate.now();
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
         String todayString = today.format(formatter);
 
         findMostSold("OrdreListe.txt", todayString);

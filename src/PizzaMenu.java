@@ -60,7 +60,7 @@ public class PizzaMenu {
     public void printMenu() {
     System.out.println(" _______________________________________________________________________________________________________");
     System.out.println("|                                                                                                       |");
-    System.out.println("|                                                  " + " PIZZAER " + "                                            |");
+    System.out.println("|                                               " + " PIZZAER " + "                                               |");
     System.out.println("|                                                                                                       |");
         for (int i = 0; i < pizzaList.size(); i++) {
             Pizza pizza = pizzaList.get(i);
