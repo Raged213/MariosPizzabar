@@ -1,3 +1,5 @@
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -101,9 +103,10 @@ public class PizzaBarController {
 
             if (accept.equalsIgnoreCase("y")) {
                 String saveOrder = String.valueOf(orderToSave.toString());
+
                 FileHandling.writeToFile(saveOrder, "OrdreListe.txt");
-                System.out.println(PizzaBarMain.green + "Ordre: " + save + " er nu gemt" + PizzaBarMain.reset);
                 orderList.remove(orderToSave);
+                System.out.println(PizzaBarMain.green + "Ordre: " + save + " er nu gemt" + PizzaBarMain.reset);
             }
         } else {
             System.out.println(PizzaBarMain.red + "Ordrenummeret findes ikke!" + PizzaBarMain.reset);

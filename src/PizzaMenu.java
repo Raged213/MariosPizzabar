@@ -28,20 +28,20 @@ public class PizzaMenu {
         pizzaList.add(new Pizza(13, "Venezia", false, "tomatsauce, ost, skinke, bacon og oregano", 61));
         pizzaList.add(new Pizza(14, "Mafia", true, "tomatsauce, ost, pepperoni, bacon, løg og oregano", 61));
 
-        this.dots.add("........................................");
-        this.dots.add("............................");
-        this.dots.add(".................................");
-        this.dots.add("........");
-        this.dots.add(".............");
-        this.dots.add("...........................................");
-        this.dots.add(".....................");
-        this.dots.add("..................");
-        this.dots.add("...................");
-        this.dots.add("..........................");
+        this.dots.add("...................................................");
         this.dots.add(".......................................");
-        this.dots.add("....................................");
-        this.dots.add("......................................");
-        this.dots.add("..........................");
+        this.dots.add("..............................................");
+        this.dots.add("...............");
+        this.dots.add("..................");
+        this.dots.add(".....................................................");
+        this.dots.add(".........................");
+        this.dots.add("........................");
+        this.dots.add(".......................");
+        this.dots.add("..................................");
+        this.dots.add("............................................");
+        this.dots.add(".......................................");
+        this.dots.add("...........................................");
+        this.dots.add("..............................");
         printMenu();
     }
 
@@ -58,16 +58,18 @@ public class PizzaMenu {
 
 
     public void printMenu() {
-    System.out.println("----------------------------------------------------------------");
-    System.out.println("|                                                              |");
-    System.out.println("|                                 " + " PIZZAER " + "                                  |");
-    System.out.println("|                                                                                     |");
+    System.out.println(" _______________________________________________________________________________________________________");
+    System.out.println("|                                                                                                       |");
+    System.out.println("|                                                  " + " PIZZAER " + "                                            |");
+    System.out.println("|                                                                                                       |");
         for (int i = 0; i < pizzaList.size(); i++) {
             Pizza pizza = pizzaList.get(i);
             String dotsStr = (i < dots.size()) ? dots.get(i) : "................"; // Undgå fejl
 
             System.out.println("| " + pizza.menuString(pizza.getIsNyhed(), dotsStr) + " |");
     }
+        System.out.println("|                                                                                                       |");
+        System.out.println(" _______________________________________________________________________________________________________");
 
     }
 

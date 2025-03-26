@@ -6,6 +6,7 @@ public class Pizza {
     private String ingredients;
     private int price;
     private boolean isNyhed;
+    private int count;
 
     public Pizza(int pizzaNummer, String name, boolean isNyhed, String ingredients, int price) {
         this.pizzaNummer = pizzaNummer;
@@ -35,6 +36,14 @@ return price;
         return isNyhed;
     }
 
+    public int getCount() {
+        return count;
+    }
+
+    public void setCount(int count) {
+        this.count = count;
+    }
+
     public void setPizzaNummer(int pizzaNummer) {
         this.pizzaNummer = pizzaNummer;
     }
@@ -58,7 +67,7 @@ this.price = price;
 
     public String menuString(boolean isNyhed, String dots) {
         if (isNyhed == true) {
-            return pizzaNummer + name + " NYHED " + ingredients + dots + price;
+            return pizzaNummer + ". " + name + ": " + " NYHED " + ingredients + dots + price + ",-";
         } else {
         return pizzaNummer + ". " + name + ": " + ingredients + dots + price + ",-";
         }
@@ -66,5 +75,8 @@ this.price = price;
 
     public String toString() {
 return name + ingredients + price;
+    }
+    public String visSalgsTal() {
+        return getCount() + " " + name;
     }
 }

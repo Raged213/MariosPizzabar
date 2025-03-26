@@ -1,9 +1,11 @@
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 
 public class Order {
     private int ordreNummer;
     private String navn;
-    private ArrayList<Integer> pizzaNumre = new ArrayList<>();
+    public ArrayList<Integer> pizzaNumre = new ArrayList<>();
     private String afhentningsTidspunkt;
     private ArrayList<Order> ordreListe;
 
