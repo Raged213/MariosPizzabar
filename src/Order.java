@@ -1,4 +1,5 @@
 import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -7,11 +8,11 @@ public class Order {
     private int ordreNummer;
     private String navn;
     public ArrayList<Integer> pizzaNumre = new ArrayList<>();
-    private String afhentningsTidspunkt;
+    private LocalTime afhentningsTidspunkt;
     private LocalDate dag;
     private ArrayList<Order> ordreListe;
 
-    public Order(String navn, int pizzaNummer, String afhteningsTidspunkt, int ordreNummer) {
+    public Order(String navn, int pizzaNummer, LocalTime afhteningsTidspunkt, int ordreNummer) {
         this.ordreNummer = ordreNummer;
         this.navn = navn;
         this.pizzaNumre.add(pizzaNummer);
@@ -33,7 +34,7 @@ public class Order {
         return String.valueOf(pizzaNumre.get(pizzaNumre));
     }
     */
-    public String getAfhentningsTidspunkt() {
+    public LocalTime getAfhentningsTidspunkt() {
         return afhentningsTidspunkt;
     }
 
@@ -49,7 +50,7 @@ public class Order {
         this.pizzaNumre.add(pizzaNummer);
     }
 
-    public void setAfhentningsTidspunkt(String afhentningsTidspunkt) {
+    public void setAfhentningsTidspunkt(LocalTime afhentningsTidspunkt) {
         this.afhentningsTidspunkt = afhentningsTidspunkt;
     }
 

@@ -1,13 +1,16 @@
 import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Comparator;
 import java.util.Scanner;
 
 public class PizzaBarController {
 
     public static ArrayList<Order> orderList = new ArrayList<>();
     public static int ordreNr = -1;
+    public static LocalTime tid;
 
     public static void createOrder() {
 
@@ -34,9 +37,12 @@ public class PizzaBarController {
             }
             sc.nextLine();      // rydder linjen
 
-            System.out.print("Afhentnings Tidspunkt:");
+            System.out.print("Afhentnings Tidspunkt: (TT:MM)");
             String AfhentningsTidspunkt = sc.nextLine();
-            x.setAfhentningsTidspunkt(AfhentningsTidspunkt);
+
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH:mm");
+            LocalTime tid = LocalTime.parse(AfhentningsTidspunkt, formatter);
+            x.setAfhentningsTidspunkt(tid);
 
             addToList(x);
 
@@ -68,7 +74,7 @@ public class PizzaBarController {
 
         // Hvis ordrenummeret er fundet
         if (orderToRemove != null) {
-            System.out.println(Farver.red + "Er du sikker på at du vil slette: (" + valg + ")" + " (y/s)" + Farver.reset);
+            System.out.println(Farver.red + "Er du sikker på at du vil slette ordre: (" + valg + ")" + " (y/s)" + Farver.reset);
             String accept = scan.nextLine();
 
             if (accept.equalsIgnoreCase("y")) {
@@ -99,7 +105,7 @@ public class PizzaBarController {
 
         // Hvis ordrenummeret er fundet
         if (orderToSave != null) {
-            System.out.println(Farver.red + "Er du sikker på at du vil markere som færdig: (" + save + ")" + " (y/s)" + Farver.reset);
+            System.out.println(Farver.red + "Er du sikker på at du vil markere ordre: (" + save + ")" + " som færdig (y/s)" + Farver.reset);
             String accept = scan.nextLine();
 
             if (accept.equalsIgnoreCase("y")) {
@@ -115,8 +121,14 @@ public class PizzaBarController {
 
     }
 
-    public static void showSortedOrderList() {
-        //orderList.sort(Comparator.comparingString(Order::getAfhentningsTidspunkt));
+    public static StringBuilder showSortedOrderList() {
+        orderList.sort(Comparator.comparing(Order::getAfhentningsTidspunkt));
+
+        StringBuilder resultat = new StringBuilder();
+        for (Order o : orderList) {
+            resultat.append(o.toString());
+        }
+        return resultat;
     }
 
     public static Pizza createPizza() {
