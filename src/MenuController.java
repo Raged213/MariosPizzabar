@@ -9,7 +9,7 @@ public class MenuController {
         boolean y = true;
 
         while (y) {
-            System.out.print("\n" + Farver.green + "ORDRELISTE:\n" + Farver.reset + PizzaBarController.orderList + "\n");
+            System.out.print("\n" + Farver.green + "ORDRELISTE:\n" + Farver.reset + PizzaBarController.showSortedOrderList() + "\n");
             System.out.println(mainMenuTekst());
 
             // Tjekker om inputtet er en int

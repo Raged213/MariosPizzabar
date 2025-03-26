@@ -66,17 +66,23 @@ this.price = price;
 
 
     public String menuString(boolean isNyhed, String dots) {
-        if (isNyhed == true) {
-            return pizzaNummer + ". " + name + ": " + " NYHED " + ingredients + dots + price + ",-";
+        // Apply orange to pizza name (using your exact color code)
+        String coloredName = Farver.orangeMain + name + Farver.reset;
+
+        if (isNyhed) {
+            // Apply green to "NYHED" text (using your exact color code)
+            String nyhedText = Farver.green + "NYHED" + Farver.reset;
+            return pizzaNummer + ". " + coloredName + ": " + nyhedText + " " + ingredients + dots + price + ",-";
         } else {
-        return pizzaNummer + ". " + name + ": " + ingredients + dots + price + ",-";
+            return pizzaNummer + ". " + coloredName + ": " + ingredients + dots + price + ",-";
         }
     }
 
     public String toString() {
-return name + ingredients + price;
+        return name + ingredients + price;
     }
-    public String visSalgsTal() {
+
+    public String visSalgsTa1() {
         return getCount() + " " + name;
     }
 }
