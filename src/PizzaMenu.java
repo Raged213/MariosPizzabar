@@ -15,6 +15,7 @@ public class PizzaMenu {
     Pizzaer();
 }
 
+
     public void Pizzaer() {
         pizzaList.add(new Pizza(1, "Vesuvio", false, "tomatsauce, ost, skinke og oregano", 57));
         pizzaList.add(new Pizza(2, "Amerikaner", true, "tomatsauce, ost, oksefars og oregano", 53));
@@ -61,12 +62,14 @@ public class PizzaMenu {
     }
 
     //til omsætning
-    public int pizzaPrice(String pizzaName){
+    public int pizzaPrice(int pizzaNummer){
         for (Pizza pizza : pizzaList){
-            if (pizza.getName().equalsIgnoreCase(pizzaName)){
+            if (pizza.getPizzaNummer() == pizzaNummer){
                 return pizza.getPrice();
+
             }
         }
+        System.out.println("Pizza ikke fundet: " + pizzaNummer);
         return 0;
     }
 

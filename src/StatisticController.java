@@ -6,18 +6,19 @@ public class StatisticController {
 
     public static void mostSoldThisDay(){
 
+        PizzaMenu menu = new PizzaMenu();
+
         LocalDate today = LocalDate.now();   //henter dagens dato
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy"); //lavet et format til datoen dag - måden - år
-        PizzaMenu menu = new PizzaMenu();
         String todayString = today.format(formatter); //laver dagens dato til en string i det format vi har lavet
 
         findMostSold("OrdreListe.txt", todayString, todayString); //kalder findMostSold methoden for dagens dato
 
-        double totalOmsætning = omsætningForDate("OrdreListe.txt", todayString, menu);
+        double totalOmsaetning = omsaetningForDate("OrdreListe.txt", todayString);
 
-        System.out.println("Total omsætning for idag (" + todayString + "): " + totalOmsætning + "Kr. ");
+        System.out.println("Total omsætning for idag (" + todayString + "): " + totalOmsaetning + "Kr. ");
 
-        saveomsætning(totalOmsætning, todayString);
+        saveomsaetning(totalOmsaetning, todayString);
     }
 
     public static void mostSoldThisWeek(){
@@ -130,35 +131,46 @@ public class StatisticController {
         }
     }
 
-    public static double omsætningForDate(String filename, String targetDate, PizzaMenu menu) {
-        double totalOmsætning = 0;
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
+    public static double omsaetningForDate(String filename, String targetDate) {
+        PizzaMenu menu = new PizzaMenu();
+        double totalOmsaetning = 0;
 
         try (Scanner scanner = new Scanner(new File(filename))) {
             while (scanner.hasNextLine()) {
                 String line = scanner.nextLine();
-                String[] parts = line.split(";");
+                if (!line.contains("Dato:")) continue; // Spring linjer over uden dato
 
-                if (parts.length < 3) continue; // Sikrer at linjen har nok data
+                String[] parts = line.split("\t"); // Split ved tabulator
+                if (parts.length < 4) continue; // Sikrer korrekt format
 
-                String date = parts[0].trim();
-                String pizzaName = parts[1].trim();
-                int quantity = Integer.parseInt(parts[2].trim());
+                String datePart = parts[1].replace("Dato: ", "").trim();
+                String pizzaNumreString = parts[2].replace("Pizzanummer: ", "").trim();
 
-                if (date.equals(targetDate)) {
-                    int price = menu.pizzaPrice(pizzaName);// Henter pizzaens pris
-                    totalOmsætning += quantity * price;
+                if (datePart.equals(targetDate)) {
+                    pizzaNumreString = pizzaNumreString.replace("[", "").replace("]", ""); // Fjern klammer
+                    String[] pizzaNumre = pizzaNumreString.split(",");
+
+                    for (String num : pizzaNumre) {
+                        int pizzaNummer = Integer.parseInt(num.trim()); // Konverter til int
+                        int price = menu.pizzaPrice(pizzaNummer);
+                        totalOmsaetning += price;
+                        System.out.println("Tilføjer pizza nr. " + pizzaNummer + " pris: " + price + " kr.");
+                    }
                 }
             }
         } catch (FileNotFoundException e) {
             System.out.println("Filen " + filename + " blev ikke fundet.");
+        } catch (NumberFormatException e) {
+            System.out.println("Fejl i format af pizzanummer.");
         }
-        return totalOmsætning;
+        return totalOmsaetning;
     }
 
-    public static void saveomsætning(double omsætning, String date){
+
+
+    public static void saveomsaetning(double omsaetning, String date){
         try (PrintWriter writer = new PrintWriter(new FileWriter("Omsætning.txt", true))) {
-            writer.println(date + ";" + omsætning);
+            writer.println(date + ";" + omsaetning);
             System.out.println("Dagens omsætning gemt i Omsætning.txt");
         } catch (IOException e) {
             System.out.println("Fejl ved lagring af omsætning: " + e.getMessage());
