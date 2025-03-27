@@ -74,10 +74,11 @@ public class MenuController {
 
 
         while (running) {
-            System.out.println("1. Vis statistik for mest sold i dag ");
-            System.out.println("2. Vis statistik for mest sold uge ");
-            System.out.println("3. Vis statistik for mest sold måned ");
-            System.out.println("4. Vis statistik for mest sold år");
+            System.out.println("\n1. Vis statistik for mest solgt i dag ");
+            System.out.println("2. Vis statistik for mest solgt uge ");
+            System.out.println("3. Vis statistik for mest solgt måned ");
+            System.out.println("4. Vis statistik for mest solgt år");
+            System.out.println("5." + Farver.red + "Tilbage" + Farver.reset);
 
 
             if (!scanner.hasNextInt()) {
