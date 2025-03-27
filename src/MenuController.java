@@ -39,6 +39,7 @@ public class MenuController {
                     menuKort.addPizza(newPizza);
                     break;
                 case 6:                  // 6. ændre pizzapris
+                    PizzaBarController.editPizza();
                     break;
                 case 7:                  // 7. Slut system
                     y = false;

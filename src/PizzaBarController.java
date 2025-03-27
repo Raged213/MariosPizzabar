@@ -1,8 +1,6 @@
-import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.Comparator;
 import java.util.Scanner;
 
@@ -197,6 +195,52 @@ public class PizzaBarController {
 
     public static void editPizza() {
 
+        Scanner scanner = new Scanner(System.in);
+        PizzaMenu pizzaMenu = new PizzaMenu();
+
+        System.out.println("pizzaer:");
+        for (Pizza pizza : pizzaMenu.pizzaList) {
+            System.out.println(pizza.getPizzaNummer() + ": " + pizza.getName() + " - " + pizza.getPrice() + " kr");
+        }
+
+        System.out.print("Indtast nummeret på den pizza, du vil redigere: ");
+        int pizzaNummer = scanner.nextInt();
+        scanner.nextLine();
+
+        Pizza pizzaToEdit = null; //leder efter den valgte pizza i listen
+        for (Pizza pizza : pizzaMenu.pizzaList) {
+            if (pizza.getPizzaNummer() == pizzaNummer) {
+                pizzaToEdit = pizza;
+                break; //hvis den findes breaker vi
+            }
+        }
+
+        if (pizzaToEdit == null) { //hvis der bliver indtastet et ugyldigt pizzanummer
+            System.out.println("Pizzaen blev ikke fundet."); //bliver denne besked printet
+            return; //return så den ikke prøver at redigerer en pizza der ikke eksisterer
+        }
+
+        System.out.print("Indtast nyt navn (eller tryk Enter for at beholde det gamle): ");
+        String newName = scanner.nextLine();
+        if (!newName.isEmpty()) { //hvis man tryjjer enter går man til det næste
+            pizzaToEdit.setName(newName); //skriv et nyt navn til den valgte pizza
+        }
+
+        System.out.print("Indtast nye ingredienser (eller tryk Enter for at beholde de gamle): ");
+        String newIngredients = scanner.nextLine();
+        if (!newIngredients.isEmpty()) { //ogem tryl enter for at gå til det næste
+            pizzaToEdit.setIngredients(newIngredients); //skriv de nye ingredienser til pizzaen
+        }
+
+        System.out.print("Indtast ny pris (eller tryk Enter for at beholde den gamle): ");
+        String newPriceInput = scanner.nextLine();
+        if (!newPriceInput.isEmpty()) { //igen tryk enter for at gå viderer
+            int newPrice = Integer.parseInt(newPriceInput); //hvis der bliver indtastet en ny pris bliver det lavet om til en Int og prisen opdateres
+            pizzaToEdit.setPrice(newPrice); //prisen opdateres
+        }
+        pizzaMenu.savePizzaToFiles();
+
+        System.out.println(Farver.green + "Pizzaen er blevet opdateret!" + Farver.reset);
     }
 
 }

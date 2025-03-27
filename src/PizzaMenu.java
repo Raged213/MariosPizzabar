@@ -1,5 +1,8 @@
+import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.List;
+import java.io.File;
+import java.io.FileNotFoundException;
 public class PizzaMenu {
 
      List<Pizza> pizzaList;
@@ -53,6 +56,17 @@ public class PizzaMenu {
             printMenu();
         } else {
             System.out.println("Fejl! kunne ikke register pizzaen! ");
+        }
+    }
+
+    public void savePizzaToFiles() {
+        try (PrintWriter writer = new PrintWriter(new File("pizzaList.txt"))) {
+            for (Pizza pizza : pizzaList) {
+                writer.println(pizza.getPizzaNummer() + ";" + pizza.getName() + ";" + pizza.getIngredients() + ";" + pizza.getPrice());
+            }
+            System.out.println("Pizza menuen er blevet gemt");
+        } catch (FileNotFoundException e) {
+            System.out.println("fejl ved lagring af pizza menuen");
         }
     }
 
