@@ -26,7 +26,7 @@ public class PizzaMenu {
         pizzaList.add(new Pizza(8, "Victoria", false, "tomatsauce, ost, skinke, ananas, champignon, løg, og oregano", 61));
         pizzaList.add(new Pizza(9, "Toronfo", true, "tomatsauce, ost, skinke, bacon, kebab, chili og oregano", 61));
         pizzaList.add(new Pizza(10, "Capricciosa", false, "tomatsauce, ost, skinke, champignon og oregano", 61));
-        pizzaList.add(new Pizza(11, "Hawai", false, "tomatsauce, ost, skinke, ananas og oregano", 61));
+        pizzaList.add(new Pizza(11, "Hawaii", false, "tomatsauce, ost, skinke, ananas og oregano", 61));
         pizzaList.add(new Pizza(12, "Le Blissola", false, "tomatsauce, ost, skinke, rejer og oregano", 61));
         pizzaList.add(new Pizza(13, "Venezia", false, "tomatsauce, ost, skinke, bacon og oregano", 61));
         pizzaList.add(new Pizza(14, "Mafia", true, "tomatsauce, ost, pepperoni, bacon, løg og oregano", 61));
@@ -45,6 +45,7 @@ public class PizzaMenu {
         this.dots.add(".......................................");
         this.dots.add("...........................................");
         this.dots.add("...............................");
+        savePizzaToFiles();
         printMenu();
     }
 
@@ -57,6 +58,16 @@ public class PizzaMenu {
         } else {
             System.out.println("Fejl! kunne ikke register pizzaen! ");
         }
+    }
+
+    //til omsætning
+    public int pizzaPrice(String pizzaName){
+        for (Pizza pizza : pizzaList){
+            if (pizza.getName().equalsIgnoreCase(pizzaName)){
+                return pizza.getPrice();
+            }
+        }
+        return 0;
     }
 
     public void savePizzaToFiles() {

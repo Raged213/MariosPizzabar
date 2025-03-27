@@ -40,3 +40,6 @@ Navn: Magnus Pizzanummer: [8, 4, 14, 8] Afhentningstidspunkt: 19:00
 
 Ordrenummer: 0	Dato: 27-03-2025
 Navn: Raged	Pizzanummer: [2, 4, 6]	Afhentningstidspunkt: 13:30
+
+Ordrenummer: 0	Dato: 27-03-2025
+Navn: Raged	Pizzanummer: [2, 2, 2, 2]	Afhentningstidspunkt: 12:30
