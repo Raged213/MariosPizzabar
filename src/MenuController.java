@@ -78,6 +78,7 @@ public class MenuController {
             System.out.println("3. Vis statistik for mest sold måned ");
             System.out.println("4. Vis statistik for mest sold år");
 
+
             if (!scanner.hasNextInt()) {
                 System.out.println("Ugyldigt input!");
                 scanner.nextLine();

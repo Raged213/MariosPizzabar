@@ -133,18 +133,41 @@ public class PizzaBarController {
 
     public static Pizza createPizza() {
         Scanner scanner = new Scanner(System.in);
+        int pizzaNummer; //Så at jeg kalder pizzaNummer i loopet og ved print af newPizza
         //Enter pizzas number
-        System.out.print("Indtast pizza nummer: ");
-        int pizzaNummer = scanner.nextInt();
-        scanner.nextLine();
+       while (true) {
+           System.out.print("Indtast pizza nummer: ");
+           if (scanner.hasNextInt()) {
+               pizzaNummer = scanner.nextInt();
+               scanner.nextLine();
+               break;
+           } else {
+               System.out.println("Prøve igen med nummer istedet: ");
+               scanner.nextLine();
+           }
+       }
 
         //Enter Pizzas navn
         System.out.print("Indtast pizza navn: ");
         String name = scanner.nextLine();
 
         //Er det en nyhed
+
+        boolean isNyhed; //For at bruge isNyhed i vores while loop.
+        while (true){
         System.out.print("Er det en nyhed?: (true/false) ");
-        boolean isNyhed = scanner.nextBoolean();
+        String nyhedInput = scanner.next().trim().toLowerCase();
+
+        if (nyhedInput.equals("true")){
+            isNyhed = true;
+            break;
+        } else if (nyhedInput.equals("false")){
+            isNyhed = false;
+            break;
+        } else {
+            System.out.println("Ugyldigt input, prøve igen med enten ´true´ eller ´false´");
+        }
+        }
         scanner.nextLine();
 
         //Enter Pizzas ingredients

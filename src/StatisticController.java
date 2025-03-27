@@ -55,7 +55,7 @@ public class StatisticController {
             boolean isOrderRelevant = false; //vi bruger en boolean til at finde ud af om en ordre er inde for den ønskede dato periode.
 
             while (scanner.hasNextLine()) { //læser filen linje for linje (line for line)
-                String line = scanner.nextLine().trim(); //fjerner mellemtrum i starten og slutningen af linjerne
+                String line = scanner.nextLine().trim(); //fjerner mellemrum i starten og slutningen af linjerne
 
                 if (line.contains("Dato:")) { //tjekker om linjen(ordren) indeholder en dato
                     String orderDateStr = line.substring(line.indexOf("Dato:") + 6).trim(); //tager datoen fra linjen
