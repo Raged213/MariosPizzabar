@@ -1,89 +1,135 @@
+import java.time.LocalDateTime;
+import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.Scanner;
 
 public class PizzaBarController {
 
     public static ArrayList<Order> orderList = new ArrayList<>();
     public static int ordreNr = -1;
+    public static LocalTime tid;
 
     public static void createOrder() {
 
         Scanner sc = new Scanner(System.in);
-        Order x = new Order();
-        ordreNr++;
-        x.setOrdreNummer(ordreNr);
 
         System.out.print("Kunde navn:");
-        String navn = sc.nextLine();
-        x.setNavn(navn);
+        if (sc.hasNextInt()) {
+            System.out.println(Farver.red + "Ugyldigt input! Du skal skrive et navn!" + Farver.reset);
+            sc.nextLine();
+        } else {
 
-        while (true) {
-            System.out.print("Pizzanummer: " + PizzaBarMain.green + "(tryk \"-1\" for at gå videre!) " + PizzaBarMain.reset);
-            int PizzaNummer = sc.nextInt();
-            if (PizzaNummer == -1) break;
-            x.setPizzaNummer(PizzaNummer);
+            Order x = new Order();
+            ordreNr++;
+            x.setOrdreNummer(ordreNr);
+
+            String navn = sc.nextLine();
+            x.setNavn(navn);
+
+            while (true) {
+                System.out.print("Pizzanummer: " + Farver.green + "(tryk \"-1\" når du ikke vil tilføje flere pizzanumre!) " + Farver.reset);
+                int PizzaNummer = sc.nextInt();
+                if (PizzaNummer == -1) break;
+                x.setPizzaNummer(PizzaNummer);
+            }
+            sc.nextLine();      // rydder linjen
+
+            System.out.print("Afhentnings Tidspunkt: (TT:MM)");
+            String AfhentningsTidspunkt = sc.nextLine();
+
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH:mm");
+            LocalTime tid = LocalTime.parse(AfhentningsTidspunkt, formatter);
+            x.setAfhentningsTidspunkt(tid);
+
+            addToList(x);
+
+            System.out.println("Ordre oprettet med ordrenummer: " + ordreNr);
         }
-        sc.nextLine();      // nextInt laver automatisk en ny linje. denne linje rydder den
-
-        System.out.print("Afhentnings Tidspunkt:");
-        String AfhentningsTidspunkt = sc.nextLine();
-        x.setAfhentningsTidspunkt(AfhentningsTidspunkt);
-
-        addToList(x);
-
-        System.out.println("Ordre oprettet med ordrenummer: " + x);
     }
 
     public static void addToList(Order ordre) {
         orderList.add(ordre);
-        System.out.println(orderList);
 
     }
 
     public static void removeOrder() {
-        boolean y = true;
         Scanner scan = new Scanner(System.in);
+        boolean found = false;
 
-        while (y) {
-            System.out.println("Hvilken ordre vil du gerne slette: \n" + orderList);
-            int valg = scan.nextInt();
-            scan.nextLine();
-            System.out.println(PizzaBarMain.red + "Er du sikker på at du vil slette: (" + valg + ")" + " (y/s)" + PizzaBarMain.reset);
+        System.out.println("Hvilken ordre vil du gerne slette: \n" + orderList);
+        int valg = scan.nextInt();
+        scan.nextLine();
+
+        // Finder indeks for ordrenummeret
+        Order orderToRemove = null;
+        for (Order o : orderList) {
+            if (o.getOrdreNummer() == valg) { // Finder den rigtige ordre
+                orderToRemove = o;
+                break;
+            }
+        }
+
+        // Hvis ordrenummeret er fundet
+        if (orderToRemove != null) {
+            System.out.println(Farver.red + "Er du sikker på at du vil slette ordre: (" + valg + ")" + " (y/s)" + Farver.reset);
             String accept = scan.nextLine();
 
             if (accept.equalsIgnoreCase("y")) {
-                orderList.remove(valg);
-                y = false;
-                System.out.println(PizzaBarMain.red + "Ordre: " + valg + " er nu slettet" + PizzaBarMain.reset);
-            } else {
-                continue;
+                orderList.remove(orderToRemove);
+                System.out.println(Farver.green + "Ordre: " + valg + " er nu slettet" + Farver.reset);
             }
+        } else {
+            System.out.println(Farver.red + "Ordrenummeret findes ikke!" + Farver.reset);
         }
     }
-
 
     public static void saveOrder() {
-        boolean y = true;
         Scanner scan = new Scanner(System.in);
+        boolean found = false;
 
-        while (y) {
-            System.out.println("Hvilken ordre vil du gerne afslutte: \n" + orderList);
-            int save = scan.nextInt();
-            scan.nextLine();
-            System.out.println("Er du sikker på at du vil gemme: (" + save + ")" + " (y/s)");
+        System.out.println("Hvilken ordre vil du gerne markere som færdig: \n" + orderList);
+        int save = scan.nextInt();
+        scan.nextLine();
+
+        // Finder indeks for ordrenummeret
+        Order orderToSave = null;
+        for (Order o : orderList) {
+            if (o.getOrdreNummer() == save) { // Finder den rigtige ordre
+                orderToSave = o;
+                break;
+            }
+        }
+
+        // Hvis ordrenummeret er fundet
+        if (orderToSave != null) {
+            System.out.println(Farver.red + "Er du sikker på at du vil markere ordre: (" + save + ")" + " som færdig (y/s)" + Farver.reset);
             String accept = scan.nextLine();
 
             if (accept.equalsIgnoreCase("y")) {
-                String saveOrder = String.valueOf(orderList.get(save));
+                String saveOrder = String.valueOf(orderToSave.toString());
+
                 FileHandling.writeToFile(saveOrder, "OrdreListe.txt");
-                y = false;
-                System.out.println(PizzaBarMain.green + "Ordre: " + save + " er nu markeret som færdig!" + PizzaBarMain.reset);
-            } else {
-                continue;
+                orderList.remove(orderToSave);
+                System.out.println(Farver.green + "Ordre: " + save + " er nu gemt" + Farver.reset);
             }
+        } else {
+            System.out.println(Farver.red + "Ordrenummeret findes ikke!" + Farver.reset);
         }
+
     }
 
+    public static StringBuilder showSortedOrderList() {
+        orderList.sort(Comparator.comparing(Order::getAfhentningsTidspunkt));
+
+        StringBuilder resultat = new StringBuilder();
+        for (Order o : orderList) {
+            resultat.append(o.toString());
+        }
+        return resultat;
+    }
 
     public static Pizza createPizza() {
         Scanner scanner = new Scanner(System.in);
@@ -120,7 +166,7 @@ public class PizzaBarController {
         }
 
         Pizza newPizza = new Pizza(pizzaNummer, name, isNyhed, ingredients, price);
-        System.out.println("Pizza Tilføjet: " + newPizza.getName());
+        System.out.println(Farver.green + "Pizza Tilføjet: " + newPizza.getName() + Farver.reset);
         FileHandling.writeToFile(String.valueOf(newPizza), "PizzaListe.txt");
 
         return newPizza;
@@ -130,5 +176,5 @@ public class PizzaBarController {
 
     }
 
-
 }
+
