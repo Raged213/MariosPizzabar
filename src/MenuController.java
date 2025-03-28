@@ -35,8 +35,14 @@ public class MenuController {
                     MenuController.statisticMenu();
                     break;
                 case 5:                  // 5. Opret ny pizza
-                    Pizza newPizza = PizzaBarController.createPizza();
-                    menuKort.addPizza(newPizza);
+                    PizzaBarController controller = new PizzaBarController();
+                    Pizza newPizza = controller.createPizza();
+
+                    if (newPizza != null) {
+                        menuKort.addPizza(newPizza);
+                    } else {
+                        System.out.println("Fajl, kunne ikke oprette pizza");
+                    }
                     break;
                 case 6:                  // 6. ændre pizzapris
                     PizzaBarController.editPizza();

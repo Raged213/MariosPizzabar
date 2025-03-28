@@ -65,18 +65,28 @@ this.price = price;
     }
 
 
-    public String menuString(boolean isNyhed, String dots) {
+    public String menuString(boolean isNyhed) {
         // Apply orange to pizza name (using your exact color code)
         String coloredName = Farver.brown + name + Farver.reset;
         String priceText = Farver.brown + price + Farver.reset;
+        String nyhedText = isNyhed ? Farver.orangeMain + "NYHED" + Farver.reset : " ";
 
-        if (isNyhed) {
+        String nameAndIngredients = pizzaNummer + ". " + coloredName + ": " + nyhedText + ingredients;
+
+        int totalLength = 118;
+        int dotsLength = totalLength - nameAndIngredients.length();
+
+        String dots = dotsLength > 0 ? ".".repeat(dotsLength) : "";
+
+        return nameAndIngredients + dots + priceText + ",-";
+
+        /*if (isNyhed) {
             // Apply green to "NYHED" text (using your exact color code)
             String nyhedText = Farver.orangeMain + "NYHED" + Farver.reset;
             return pizzaNummer + ". " + coloredName + ": " + nyhedText + " " + ingredients + dots + priceText + Farver.brown + ",-" + Farver.reset;
         } else {
             return pizzaNummer + ". " + coloredName + ": " + ingredients + dots + priceText + Farver.brown + ",-" + Farver.reset;
-        }
+        } */
     }
 
     public String toString() {
