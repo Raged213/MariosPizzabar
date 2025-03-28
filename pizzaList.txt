@@ -12,5 +12,3 @@
 12;Le Blissola;tomatsauce, ost, skinke, rejer og oregano;61;false
 13;Venezia;tomatsauce, ost, skinke, bacon og oregano;61;false
 14;Mafia;tomatsauce, ost, pepperoni, bacon, løg og oregano;61;true
-15;RasmusErStærk;Store arme, Store muskler, flot sjæl;6969;true
-16;Sebastian;Flot Skæg, fantastiske billiardskills, dranker ish;420;true

@@ -57,7 +57,7 @@ public class MenuController {
                         4. Vis statistik
                         
                         5. Opret ny pizza
-                        6. ændre pizzapris
+                        6. Rediger Pizza på menukort
                         """ + Farver.red +
                 "7. Slut system" + Farver.reset;
     }
@@ -74,6 +74,7 @@ public class MenuController {
             System.out.println("2. Vis statistik for mest sold uge ");
             System.out.println("3. Vis statistik for mest sold måned ");
             System.out.println("4. Vis statistik for mest sold år");
+            System.out.println("5. " + Farver.red + "Tilbage" + Farver.reset);
 
 
             if (!scanner.hasNextInt()) {
