@@ -1,6 +1,6 @@
 import java.util.Scanner;
 
-public class PasswordAuth {
+/*public class PasswordAuth {
     public PasswordAuth() {
         Scanner scanner = new Scanner(System.in);
 
@@ -29,4 +29,4 @@ public class PasswordAuth {
             }
         }
     }
-}
+}*/
