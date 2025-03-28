@@ -136,7 +136,7 @@ public class PizzaMenu {
             Pizza pizza = pizzaList.get(i);
             // String dotsStr = (i < dots.size()) ? dots.get(i) : "................"; // Undgå fejl
 
-            System.out.println(Farver.orangeMain + "| " + Farver.reset + pizza.menuString(pizza.getIsNyhed()) + Farver.orangeMain + " |" + Farver.orangeMain);
+            System.out.println(Farver.orangeMain + " | " + Farver.reset + pizza.menuString(pizza.getIsNyhed()) + Farver.orangeMain + " | " + Farver.orangeMain);
         }
         System.out.println(Farver.orangeMain + "|                                                                                                       |" + Farver.reset);
         System.out.println(Farver.orangeMain + " _______________________________________________________________________________________________________" + Farver.reset);

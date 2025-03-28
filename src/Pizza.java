@@ -68,7 +68,7 @@ this.price = price;
         // Apply orange to pizza name (using your exact color code)
         String coloredName = Farver.brown + name + Farver.reset;
         String priceText = Farver.brown + price + Farver.reset;
-        String nyhedText = isNyhed ? Farver.orangeMain + "NYHED" + Farver.reset : " ";
+        String nyhedText = isNyhed ? Farver.orangeMain + " NYHED " + Farver.reset : " ";
 
         String nameAndIngredients = pizzaNummer + ". " + coloredName + ": " + nyhedText + ingredients;
 
