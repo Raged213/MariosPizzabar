@@ -79,6 +79,12 @@ this.price = price;
 
     }
 
+    public static String stripColors(String input) {
+        return input
+                .replaceAll("\u001B\\[[;\\d]*m", "")
+                .replaceAll("\033\\[[;\\d]*m", "");
+    }
+
     public String toString() {
         return name + ingredients + price;
     }
