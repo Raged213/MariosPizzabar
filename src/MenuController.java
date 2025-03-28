@@ -36,8 +36,6 @@ public class MenuController {
                     break;
                 case 5:                  // 5. Opret ny pizza
                     Pizza newPizza = PizzaBarController.createPizza();
-
-                    menuKort.addPizza(newPizza);
                     break;
                 case 6:                  // 6. ændre pizzapris
                     PizzaBarController.editPizza();

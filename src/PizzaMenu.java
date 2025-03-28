@@ -16,7 +16,6 @@ public class PizzaMenu {
         this.dots = new ArrayList<>();
 
         loadPizzaFromFiles();
-        Pizzaer();
         printMenu();
     }
 
@@ -94,13 +93,13 @@ public class PizzaMenu {
                     String line = scanner.nextLine();
                     String[] parts = line.split(";");
 
-                    if (parts.length == 4) {
+                    if (parts.length <= 5) {
                         int nummer = Integer.parseInt(parts[0]);
                         String navn = parts[1];
                         String ingredienser = parts[2];
                         int pris = Integer.parseInt(parts[3]);
-                        boolean isNyhed = false;
-                        pizzaList.add(new Pizza(nummer, navn, false, ingredienser,pris));
+                        boolean isNyhed = Boolean.parseBoolean(parts[4]);
+                        pizzaList.add(new Pizza(nummer, navn, isNyhed, ingredienser,pris));
                     }
                 }
                 System.out.println("Menuen er indlæst fra fil");
