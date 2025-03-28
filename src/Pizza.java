@@ -56,19 +56,26 @@ this.price = price;
 
 
     public String menuString(boolean isNyhed) {
-        // Apply orange to pizza name (using your exact color code)
+        // Farver
         String coloredName = Farver.brown + name + Farver.reset;
-        String priceText = Farver.brown + price + Farver.reset;
-        String nyhedText = isNyhed ? Farver.orangeMain + " NYHED " + Farver.reset : " ";
+        String coloredPrice = Farver.brown + price + Farver.reset;
+        String coloredNyhed = isNyhed ? Farver.orangeMain + "NYHED " + Farver.reset : "";
 
-        String nameAndIngredients = pizzaNummer + ". " + coloredName + ": " + nyhedText + ingredients;
+        // Byg farvet linje uden prikker
+        String coloredContent = pizzaNummer + ". " + coloredName + ": " + coloredNyhed + ingredients;
+        String fullColoredLine = coloredContent + coloredPrice + ",-";
+
+        // Fjern farvekoder for at beregne korrekt længde
+        String plainContent = stripColors(pizzaNummer + ". " + name + ": " + (isNyhed ? "NYHED " : "") + ingredients);
+        String plainPrice = price + ",-";
 
         int totalLength = 118;
-        int dotsLength = totalLength - nameAndIngredients.length();
+        int dotsLength = totalLength - (plainContent.length() + plainPrice.length());
 
         String dots = dotsLength > 0 ? ".".repeat(dotsLength) : "";
 
-        return nameAndIngredients + dots + priceText + ",-";
+        return coloredContent + dots + coloredPrice + ",-";
+
 
     }
 

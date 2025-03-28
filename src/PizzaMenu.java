@@ -128,18 +128,18 @@ public class PizzaMenu {
     }
 
     public static void printMenu() {
-        System.out.println(Farver.orangeMain + " _______________________________________________________________________________________________________" + Farver.reset);
-        System.out.println(Farver.orangeMain + "|                                                                                                       |" + Farver.reset);
-        System.out.println(Farver.orangeMain + "|                                               " + " PIZZAER " + "                                               |" + Farver.reset);
-        System.out.println(Farver.orangeMain + "|                                                                                                       |" + Farver.reset);
+        System.out.println(Farver.orangeMain + " __________________________________________________________________________________________________________________________" + Farver.reset);
+        System.out.println(Farver.orangeMain + " |                                                                                                                        |" + Farver.reset);
+        System.out.println(Farver.orangeMain + " |                                                     " + " PIZZAER " + "                                                          |" + Farver.reset);
+        System.out.println(Farver.orangeMain + " |                                                                                                                        |" + Farver.reset);
         for (int i = 0; i < pizzaList.size(); i++) {
             Pizza pizza = pizzaList.get(i);
             // String dotsStr = (i < dots.size()) ? dots.get(i) : "................"; // Undgå fejl
 
             System.out.println(Farver.orangeMain + " | " + Farver.reset + pizza.menuString(pizza.getIsNyhed()) + Farver.orangeMain + " | " + Farver.orangeMain);
         }
-        System.out.println(Farver.orangeMain + "|                                                                                                       |" + Farver.reset);
-        System.out.println(Farver.orangeMain + " _______________________________________________________________________________________________________" + Farver.reset);
+        System.out.println(Farver.orangeMain + " |                                                                                                                        |" + Farver.reset);
+        System.out.println(Farver.orangeMain + " __________________________________________________________________________________________________________________________" + Farver.reset);
 
     }
 }

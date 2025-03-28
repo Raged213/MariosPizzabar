@@ -13,3 +13,4 @@
 13;Venezia;tomatsauce, ost, skinke, bacon og oregano;61;false
 14;Mafia;tomatsauce, ost, pepperoni, bacon, løg og oregano;61;true
 15;Rasmus;Store arme, Store muskler;420;true
+16;Seb;Flot skæg, ok billardskills, dranker;420;true
