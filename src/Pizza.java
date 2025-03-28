@@ -28,7 +28,7 @@ public class Pizza {
     }
 
     public int getPrice() {
-return price;
+        return price;
     }
 
     public boolean getIsNyhed() {
@@ -50,7 +50,7 @@ return price;
     }
 
     public void setPrice(int price) {
-this.price = price;
+        this.price = price;
     }
 
 

@@ -10,7 +10,7 @@ public class PizzaBarController {
     public static int ordreNr = -1;
 
     public static void createOrder() {
-
+        PizzaMenu.printMenu();
         Scanner sc = new Scanner(System.in);
 
         System.out.print("KundeNavn:");
@@ -183,10 +183,10 @@ public class PizzaBarController {
         Scanner scanner = new Scanner(System.in);
         PizzaMenu pizzaMenu = new PizzaMenu();
 
-        System.out.println("pizzaer:");
-        for (Pizza pizza : PizzaMenu.getPizzaList()) {
-            System.out.println(pizza.getPizzaNummer() + ": " + pizza.getName() + " - " + pizza.getPrice() + " kr");
-        }
+        //System.out.println("pizzaer:");
+        //for (Pizza pizza : PizzaMenu.getPizzaList()) {
+        //    System.out.println(pizza.getPizzaNummer() + ": " + pizza.getName() + " - " + pizza.getPrice() + " kr");
+        //}
 
         System.out.print("Indtast nummeret på den pizza, du vil redigere: ");
         int pizzaNummer = scanner.nextInt();
@@ -226,6 +226,7 @@ public class PizzaBarController {
         PizzaMenu.savePizzaToFiles();
 
         System.out.println(Farver.green + "Pizzaen er blevet opdateret!" + Farver.reset);
+        PizzaMenu.printMenu();
     }
 
 }

@@ -1,9 +1,5 @@
 import java.io.*;
 
-
-// TODO: Gem i mapper (year/month) til åbning i menuen statisticYearMenu
-
-@SuppressWarnings("CallToPrintStackTrace")
 public class FileHandling {
 
     public static void createFile(String path) {

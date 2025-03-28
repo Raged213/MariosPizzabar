@@ -1,7 +1,7 @@
 import java.util.Scanner;
 
 public class PasswordAuth {
-    /*public PasswordAuth() {
+    public PasswordAuth() {
         Scanner scanner = new Scanner(System.in);
 
         for (int i = 0; true; i++) {
@@ -28,5 +28,5 @@ public class PasswordAuth {
                 System.out.println(Farver.red + "ACCESS DENIED!" + Farver.reset);
             }
         }
-    }*/
+    }
 }
