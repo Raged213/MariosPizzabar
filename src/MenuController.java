@@ -35,14 +35,7 @@ public class MenuController {
                     MenuController.statisticMenu();
                     break;
                 case 5:                  // 5. Opret ny pizza
-                    PizzaBarController controller = new PizzaBarController();
-                    Pizza newPizza = controller.createPizza();
-
-                    if (newPizza != null) {
-                        menuKort.addPizza(newPizza);
-                    } else {
-                        System.out.println("Fajl, kunne ikke oprette pizza");
-                    }
+                    Pizza newPizza = PizzaBarController.createPizza();
                     break;
                 case 6:                  // 6. ændre pizzapris
                     PizzaBarController.editPizza();
@@ -70,9 +63,6 @@ public class MenuController {
     }
 
 
-    public static void orderMenu() {
-
-    }
 
     public static void statisticMenu() {
         Scanner scanner = new Scanner(System.in);
@@ -108,7 +98,7 @@ public class MenuController {
                     break;
                 case 5:
                     running = false;
-                    System.out.println("Vis statistik afslutes! ");
+                    System.out.println("Vis statistik afsluttet! ");
                     break;
 
             }

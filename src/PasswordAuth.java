@@ -1,14 +1,14 @@
 import java.util.Scanner;
 
-/*public class PasswordAuth {
-    public PasswordAuth() {
+public class PasswordAuth {
+    /*public PasswordAuth() {
         Scanner scanner = new Scanner(System.in);
 
-        for (int i = 0; i < 3; i++) {
-            System.out.println("Username: ");
+        for (int i = 0; true; i++) {
+            System.out.print("Username: ");
             String username = scanner.nextLine();
 
-            System.out.println("Password: ");
+            System.out.print("Password: ");
             String password = scanner.nextLine();
 
             // Her kan man se Username og Password for Mario og Alfonso
@@ -28,5 +28,5 @@ import java.util.Scanner;
                 System.out.println(Farver.red + "ACCESS DENIED!" + Farver.reset);
             }
         }
-    }
-}*/
+    }*/
+}

@@ -1,12 +1,11 @@
-import java.util.ArrayList;
 
 public class Pizza {
     private int pizzaNummer;
     private String name;
     private String ingredients;
     private int price;
-    private boolean isNyhed;
-    private int count;
+    private final boolean isNyhed;
+
 
     public Pizza(int pizzaNummer, String name, boolean isNyhed, String ingredients, int price) {
         this.pizzaNummer = pizzaNummer;
@@ -36,13 +35,7 @@ return price;
         return isNyhed;
     }
 
-    public int getCount() {
-        return count;
-    }
 
-    public void setCount(int count) {
-        this.count = count;
-    }
 
     public void setPizzaNummer(int pizzaNummer) {
         this.pizzaNummer = pizzaNummer;
@@ -60,40 +53,41 @@ return price;
 this.price = price;
     }
 
-    public void setIsNyhed(boolean isNyhed) {
-        this.isNyhed = isNyhed;
-    }
 
 
     public String menuString(boolean isNyhed) {
-        // Apply orange to pizza name (using your exact color code)
+        // Farver
         String coloredName = Farver.brown + name + Farver.reset;
-        String priceText = Farver.brown + price + Farver.reset;
-        String nyhedText = isNyhed ? Farver.orangeMain + "NYHED" + Farver.reset : " ";
+        String coloredPrice = Farver.brown + price + Farver.reset;
+        String coloredNyhed = isNyhed ? Farver.orangeMain + "NYHED " + Farver.reset : "";
 
-        String nameAndIngredients = pizzaNummer + ". " + coloredName + ": " + nyhedText + ingredients;
+        // Byg farvet linje uden prikker
+        String coloredContent = pizzaNummer + ". " + coloredName + ": " + coloredNyhed + ingredients;
+        String fullColoredLine = coloredContent + coloredPrice + ",-";
+
+        // Fjern farvekoder for at beregne korrekt længde
+        String plainContent = stripColors(pizzaNummer + ". " + name + ": " + (isNyhed ? "NYHED " : "") + ingredients);
+        String plainPrice = price + ",-";
 
         int totalLength = 118;
-        int dotsLength = totalLength - nameAndIngredients.length();
+        int dotsLength = totalLength - (plainContent.length() + plainPrice.length());
 
         String dots = dotsLength > 0 ? ".".repeat(dotsLength) : "";
 
-        return nameAndIngredients + dots + priceText + ",-";
+        return coloredContent + dots + coloredPrice + ",-";
 
-        /*if (isNyhed) {
-            // Apply green to "NYHED" text (using your exact color code)
-            String nyhedText = Farver.orangeMain + "NYHED" + Farver.reset;
-            return pizzaNummer + ". " + coloredName + ": " + nyhedText + " " + ingredients + dots + priceText + Farver.brown + ",-" + Farver.reset;
-        } else {
-            return pizzaNummer + ". " + coloredName + ": " + ingredients + dots + priceText + Farver.brown + ",-" + Farver.reset;
-        } */
+
+    }
+
+    public static String stripColors(String input) {
+        return input
+                .replaceAll("\u001B\\[[;\\d]*m", "")
+                .replaceAll("\033\\[[;\\d]*m", "");
     }
 
     public String toString() {
         return name + ingredients + price;
     }
 
-    public String visSalgsTa1() {
-        return getCount() + " " + name;
-    }
+
 }
