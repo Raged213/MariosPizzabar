@@ -30,6 +30,12 @@ public class StatisticController {
         String endDateFormatted = endOfWeek.format(DateTimeFormatter.ofPattern("dd-MM-yyyy")); //formatterer
 
         findMostSold("OrdreListe.txt", startDateFormatted, endDateFormatted); //kalder findMostSold methoden for ugens datoer
+
+        double totalOmsaetning = 0;
+        for (LocalDate date = startOfWeek; !date.isAfter(endOfWeek); date = date.plusDays(1)) {
+            totalOmsaetning += omsaetningForDate("OrdreListe.txt", date.format(DateTimeFormatter.ofPattern("dd-MM-yyyy")));
+        }
+        System.out.println("Total omsætning for denne uge (" + totalOmsaetning + " - " + endDateFormatted + "): " + totalOmsaetning + "Kr. ");
     }
 
     public static void mostSoldThisMonth(){
@@ -41,6 +47,12 @@ public class StatisticController {
         String endDateStr = endOfMonth.format(DateTimeFormatter.ofPattern("dd-MM-yyyy")); //formatterer
 
         findMostSold("OrdreListe.txt", startDateStr, endDateStr); //kalder findMostSold for alle datoer i denne måned
+
+        double totalOmsaetning = 0;
+        for (LocalDate date = startOfMonth; !date.isAfter(endOfMonth); date = date.plusDays(1)) {
+            totalOmsaetning += omsaetningForDate("OrdreListe.txt", date.format(DateTimeFormatter.ofPattern("dd-MM-yyyy")));
+        }
+        System.out.println("Total omsætning for denne måned (" + startDateStr + "): " + totalOmsaetning + "Kr. ");
     }
 
     public static void mostSoldThisYear(){
@@ -52,6 +64,12 @@ public class StatisticController {
         String endDateStr = endOfYear.format(DateTimeFormatter.ofPattern("dd-MM-yyyy")); //formatterer
 
         findMostSold("OrdreListe.txt", startDateStr, endDateStr); //kalder findMostSold på alle årets datoer
+
+        double totalOmsaetning = 0;
+        for (LocalDate date = startOfYear; !date.isAfter(endOfYear); date = date.plusDays(1)) {
+            totalOmsaetning += omsaetningForDate("OrdreListe.txt", date.format(DateTimeFormatter.ofPattern("dd-MM-yyyy")));
+        }
+        System.out.println("Total omsætning for dette år (" +  startDateStr + "): " + totalOmsaetning + "Kr. ");
     }
 
     private static void findMostSold(String filePath, String startDate, String endDate) {

@@ -1,7 +1,5 @@
 import java.io.*;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Scanner;
+import java.util.*;
 import java.io.PrintWriter;
 import java.util.List;
 
@@ -33,14 +31,16 @@ public class FileHandling {
             e.printStackTrace();
         }
     }
-    public static void readFile(String path) {
+    public static ArrayList<String> readFile(String path) {
+        ArrayList<String> linjer = new ArrayList<>();
+
         try {
             File fil = new File(path);
             Scanner myReader = new Scanner(fil);
+
             while (myReader.hasNextLine()) {
                 String data = myReader.nextLine();
-                String[] words = data.split(",");
-                System.out.println(Arrays.toString(words));
+                linjer.add(data);
             }
             myReader.close();
 
@@ -48,6 +48,7 @@ public class FileHandling {
             System.out.println("An error occurred.");
             e.printStackTrace();
         }
+        return linjer;
     }
 
     public static void sortFile(String path) {
