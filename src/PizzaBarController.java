@@ -134,19 +134,19 @@ public class PizzaBarController {
 
 
 
-        System.out.println("Indtast pizzanavn:");
+        System.out.print("Indtast pizzanavn: ");
         String navn = scanner.nextLine();
 
 
 
-        System.out.println("Indtast ingredienser (separeret med komma):");
+        System.out.print("Indtast ingredienser (separeret med komma): ");
         String ingredienser = scanner.nextLine();
 
-        System.out.println("Indtast pris:");
+        System.out.print("Indtast pris:");
         int pris = scanner.nextInt();
         scanner.nextLine(); // For at undgå scanner-bug
 
-        System.out.println("Er det en nyhed? (true/false):");
+        System.out.print("Er det en nyhed? (true/false): ");
         boolean isNyhed = scanner.nextBoolean();
         scanner.nextLine(); // For at undgå scanner-bug
 
@@ -164,7 +164,7 @@ public class PizzaBarController {
         // Print den opdaterede menu
         PizzaMenu.printMenu();
 
-        System.out.println("Ny pizza tilføjet og menuen opdateret!");
+        System.out.println("Ny pizza tilføjet og menuen opdateret! ");
 
         return newPizza;
     }
