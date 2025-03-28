@@ -12,3 +12,4 @@
 12;Le Blissola;tomatsauce, ost, skinke, rejer og oregano;61
 13;Venezia;tomatsauce, ost, skinke, bacon og oregano;61
 14;Mafia;tomatsauce, ost, pepperoni, bacon, løg og oregano;61
+testtomatsauce, ost 65
