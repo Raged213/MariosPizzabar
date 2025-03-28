@@ -188,7 +188,7 @@ public class PizzaBarController {
 
         Pizza newPizza = new Pizza(pizzaNummer, name, isNyhed, ingredients, price);
         System.out.println(Farver.green + "Pizza Tilføjet: " + newPizza.getName() + Farver.reset);
-        FileHandling.writeToFile(String.valueOf(newPizza), "PizzaListe.txt");
+        FileHandling.writeToFile(String.valueOf(newPizza), "pizzaListe.txt");
 
         return newPizza;
     }
