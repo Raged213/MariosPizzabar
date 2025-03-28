@@ -8,6 +8,7 @@ public class Order {
     private String navn;
     public ArrayList<Integer> pizzaNumre = new ArrayList<>();
     private LocalTime afhentningsTidspunkt;
+    private String bemærkning;
 
 
     public Order(){}
@@ -36,6 +37,9 @@ public class Order {
     public void setAfhentningsTidspunkt(LocalTime afhentningsTidspunkt) {
         this.afhentningsTidspunkt = afhentningsTidspunkt;
     }
+    public void setBemærkning(String bemærkning) {
+        this.bemærkning = bemærkning;
+    }
 
     public String getDato() {
         DateTimeFormatter dansk = DateTimeFormatter.ofPattern("dd-MM-yyyy");
@@ -43,10 +47,6 @@ public class Order {
         return dagensDato.format(dansk);
     }
 
-    /*public int ordrePrice() {
-        int total = 0;
-        for (Pizza pizza : pizzaNumre )
-    }*/
 
     public String kundeOrdrer() {
         return toString().replaceAll(";","\t");

@@ -48,12 +48,21 @@ public class PizzaBarController {
                 }
             }
 
-            System.out.print("Afhentnings Tidspunkt: (TT:MM)");
+            System.out.println("Afhentnings Tidspunkt: (TT:MM)");
             String AfhentningsTidspunkt = sc.nextLine();
 
             DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH:mm");
             LocalTime tid = LocalTime.parse(AfhentningsTidspunkt, formatter);
             x.setAfhentningsTidspunkt(tid);
+
+            System.out.println("Tilføj bemærkning, eller tryk \"x\" for ingen bemærkning:");
+            String bemærkning = sc.nextLine();
+
+            if (!bemærkning.equalsIgnoreCase("x")) {
+                System.out.println("Bemærkning:" + bemærkning);
+                x.setBemærkning(bemærkning);
+            } else {System.out.println("");}
+
 
             addToList(x);
 
