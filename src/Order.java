@@ -43,12 +43,21 @@ public class Order {
         return dagensDato.format(dansk);
     }
 
+    /*public int ordrePrice() {
+        int total = 0;
+        for (Pizza pizza : pizzaNumre )
+    }*/
+
+    public String kundeOrdrer() {
+        return toString().replaceAll(";","\t");
+    }
+
 
     @Override
     public String toString() {
-        return "\nOrdrenummer: " + ordreNummer + "\tDato: " + getDato() + "\n" +
-                "Navn: " + navn + "\t" +
-                "Pizzanummer: " + pizzaNumre + "\t" +
+        return "\nOrdrenummer: " + ordreNummer + ";Dato: " + getDato() + ";" +
+                "Navn: " + navn + ";" +
+                "Pizzanummer: " + pizzaNumre + ";" +
                 "Afhentningstidspunkt: " + afhentningsTidspunkt + "\n";
     }
 }

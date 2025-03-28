@@ -16,7 +16,7 @@ public class StatisticController {
 
         double totalOmsaetning = omsaetningForDate("OrdreListe.txt", todayString);
 
-        System.out.println("Total omsætning for idag (" + todayString + "): " + totalOmsaetning + "Kr. ");
+        System.out.println("Total omsætning for idag (" + todayString + "): " + totalOmsaetning + " Kr. ");
 
         saveomsaetning(totalOmsaetning, todayString);
     }
@@ -35,7 +35,7 @@ public class StatisticController {
         for (LocalDate date = startOfWeek; !date.isAfter(endOfWeek); date = date.plusDays(1)) {
             totalOmsaetning += omsaetningForDate("OrdreListe.txt", date.format(DateTimeFormatter.ofPattern("dd-MM-yyyy")));
         }
-        System.out.println("Total omsætning for denne uge (" + totalOmsaetning + " - " + endDateFormatted + "): " + totalOmsaetning + "Kr. ");
+        System.out.println("Total omsætning for denne uge (" + startDateFormatted + " - " + endDateFormatted + "): " + totalOmsaetning + " Kr. ");
     }
 
     public static void mostSoldThisMonth(){
@@ -52,7 +52,7 @@ public class StatisticController {
         for (LocalDate date = startOfMonth; !date.isAfter(endOfMonth); date = date.plusDays(1)) {
             totalOmsaetning += omsaetningForDate("OrdreListe.txt", date.format(DateTimeFormatter.ofPattern("dd-MM-yyyy")));
         }
-        System.out.println("Total omsætning for denne måned (" + startDateStr + "): " + totalOmsaetning + "Kr. ");
+        System.out.println("Total omsætning for denne måned (" + startDateStr + " - " + endDateStr + "): " + totalOmsaetning + " Kr. ");
     }
 
     public static void mostSoldThisYear(){
@@ -69,7 +69,7 @@ public class StatisticController {
         for (LocalDate date = startOfYear; !date.isAfter(endOfYear); date = date.plusDays(1)) {
             totalOmsaetning += omsaetningForDate("OrdreListe.txt", date.format(DateTimeFormatter.ofPattern("dd-MM-yyyy")));
         }
-        System.out.println("Total omsætning for dette år (" +  startDateStr + "): " + totalOmsaetning + "Kr. ");
+        System.out.println("Total omsætning for dette år (" +  startDateStr + " - " + endDateStr + "): " + totalOmsaetning + " Kr. ");
     }
 
     private static void findMostSold(String filePath, String startDate, String endDate) {
@@ -84,11 +84,10 @@ public class StatisticController {
                 String line = scanner.nextLine().trim(); //fjerner mellemrum i starten og slutningen af linjerne
 
                 if (line.contains("Dato:")) { //tjekker om linjen(ordren) indeholder en dato
-                    String orderDateStr = line.substring(line.indexOf("Dato:") + 6).trim(); //tager datoen fra linjen
+                    String orderDateStr = line.substring(line.indexOf("Dato:") + 6, line.indexOf("Dato:") + 16).trim(); //tager datoen fra linjen
                     LocalDate orderDate = LocalDate.parse(orderDateStr, DateTimeFormatter.ofPattern("dd-MM-yyyy")); //konverterer datoen fra tekst
                     LocalDate start = LocalDate.parse(startDate, DateTimeFormatter.ofPattern("dd-MM-yyyy")); //til at være et objekt
                     LocalDate end = LocalDate.parse(endDate, DateTimeFormatter.ofPattern("dd-MM-yyyy")); //som man kan bruge til at sammenligne
-
                     isOrderRelevant = !orderDate.isBefore(start) && !orderDate.isAfter(end); //sætter isOrderRelevant til at være true hvis den er inden for den ønskede dato periode
                 }
                     if (isOrderRelevant && line.startsWith("Navn: ")) { //tjekker om linjen har en ordre og relevant dato
@@ -156,23 +155,24 @@ public class StatisticController {
         try (Scanner scanner = new Scanner(new File(filename))) {
             while (scanner.hasNextLine()) {
                 String line = scanner.nextLine();
-                if (!line.contains("Dato:")) continue; // Spring linjer over uden dato
+                //if (!line.contains("Dato:")) continue; // Spring linjer over uden dato
 
-                String[] parts = line.split("\t"); // Split ved tabulator
-                if (parts.length < 4) continue; // Sikrer korrekt format
+                String[] parts = line.split(";"); // Split ved tabulator
+                if (parts.length > 5) continue; // Sikrer korrekt format
 
                 String datePart = parts[1].replace("Dato: ", "").trim();
-                String pizzaNumreString = parts[2].replace("Pizzanummer: ", "").trim();
+                String pizzaNumreString = parts[3].replace("Pizzanummer: ", "").trim();
 
                 if (datePart.equals(targetDate)) {
                     pizzaNumreString = pizzaNumreString.replace("[", "").replace("]", ""); // Fjern klammer
                     String[] pizzaNumre = pizzaNumreString.split(",");
 
                     for (String num : pizzaNumre) {
+
                         int pizzaNummer = Integer.parseInt(num.trim()); // Konverter til int
                         int price = menu.pizzaPrice(pizzaNummer);
                         totalOmsaetning += price;
-                        System.out.println("Tilføjer pizza nr. " + pizzaNummer + " pris: " + price + " kr.");
+                        //System.out.println("Tilføjer pizza nr. " + pizzaNummer + " pris: " + price + " kr.");
                     }
                 }
             }
