@@ -8,14 +8,7 @@ public class Order {
     private String navn;
     public ArrayList<Integer> pizzaNumre = new ArrayList<>();
     private LocalTime afhentningsTidspunkt;
-    private ArrayList<Order> ordreListe;
 
-    public Order(String navn, int pizzaNummer, LocalTime afhentningsTidspunkt, int ordreNummer) {
-        this.ordreNummer = ordreNummer;
-        this.navn = navn;
-        this.pizzaNumre.add(pizzaNummer);
-        this.afhentningsTidspunkt = afhentningsTidspunkt;
-    }
 
     public Order(){}
 

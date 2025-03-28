@@ -4,8 +4,8 @@ public class Pizza {
     private String name;
     private String ingredients;
     private int price;
-    private boolean isNyhed;
-    private int count;
+    private final boolean isNyhed;
+
 
     public Pizza(int pizzaNummer, String name, boolean isNyhed, String ingredients, int price) {
         this.pizzaNummer = pizzaNummer;
@@ -35,13 +35,7 @@ return price;
         return isNyhed;
     }
 
-    public int getCount() {
-        return count;
-    }
 
-    public void setCount(int count) {
-        this.count = count;
-    }
 
     public void setPizzaNummer(int pizzaNummer) {
         this.pizzaNummer = pizzaNummer;
@@ -59,9 +53,6 @@ return price;
 this.price = price;
     }
 
-    public void setIsNyhed(boolean isNyhed) {
-        this.isNyhed = isNyhed;
-    }
 
 
     public String menuString(boolean isNyhed) {
@@ -79,20 +70,11 @@ this.price = price;
 
         return nameAndIngredients + dots + priceText + ",-";
 
-        /*if (isNyhed) {
-            // Apply green to "NYHED" text (using your exact color code)
-            String nyhedText = Farver.orangeMain + "NYHED" + Farver.reset;
-            return pizzaNummer + ". " + coloredName + ": " + nyhedText + " " + ingredients + dots + priceText + Farver.brown + ",-" + Farver.reset;
-        } else {
-            return pizzaNummer + ". " + coloredName + ": " + ingredients + dots + priceText + Farver.brown + ",-" + Farver.reset;
-        } */
     }
 
     public String toString() {
         return name + ingredients + price;
     }
 
-    public String visSalgsTa1() {
-        return getCount() + " " + name;
-    }
+
 }

@@ -1,6 +1,5 @@
 import java.io.*;
-import java.util.*;
-import java.io.PrintWriter;
+
 
 // TODO: Gem i mapper (year/month) til åbning i menuen statisticYearMenu
 
@@ -30,38 +29,6 @@ public class FileHandling {
         } catch (IOException e) {
             System.out.println("An error occurred.");
             e.printStackTrace();
-        }
-    }
-    public static ArrayList<String> readFile(String path) {
-        ArrayList<String> linjer = new ArrayList<>();
-
-        try {
-            File fil = new File(path);
-            Scanner myReader = new Scanner(fil);
-
-            while (myReader.hasNextLine()) {
-                String data = myReader.nextLine();
-                linjer.add(data);
-            }
-            myReader.close();
-
-        } catch (FileNotFoundException e) {
-            System.out.println("An error occurred.");
-            e.printStackTrace();
-        }
-        return linjer;
-    }
-
-
-
-    public static void savePizzaList(List<Pizza> pizzaList) {
-        try (PrintWriter writer = new PrintWriter(new FileWriter("pizzaList.txt"))) {
-            for (Pizza pizza : pizzaList) {
-                writer.println(pizza.getPizzaNummer() + ";" + pizza.getName() + ";" + pizza.getIngredients() + ";" + pizza.getPrice() + ";" + pizza.getIsNyhed());
-            }
-            System.out.println("Pizza menuen gemt i pizzaList.txt");
-        } catch (IOException e) {
-            System.out.println("fejl, kunne ikke gemme menuen" + e.getMessage());
         }
     }
 

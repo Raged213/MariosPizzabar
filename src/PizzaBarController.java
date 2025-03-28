@@ -68,7 +68,6 @@ public class PizzaBarController {
 
     public static void removeOrder() {
         Scanner scan = new Scanner(System.in);
-        boolean found = false;
 
         System.out.println("Hvilken ordre vil du gerne slette: \n" + orderList);
         int valg = scan.nextInt();
@@ -99,7 +98,6 @@ public class PizzaBarController {
 
     public static void saveOrder() {
         Scanner scan = new Scanner(System.in);
-        boolean found = false;
 
         System.out.println("Hvilken ordre vil du gerne markere som færdig: \n" + orderList);
         int save = scan.nextInt();
@@ -225,7 +223,7 @@ public class PizzaBarController {
             int newPrice = Integer.parseInt(newPriceInput); //hvis der bliver indtastet en ny pris bliver det lavet om til en Int og prisen opdateres
             pizzaToEdit.setPrice(newPrice); //prisen opdateres
         }
-        pizzaMenu.savePizzaToFiles();
+        PizzaMenu.savePizzaToFiles();
 
         System.out.println(Farver.green + "Pizzaen er blevet opdateret!" + Farver.reset);
     }
