@@ -147,19 +147,19 @@ public class PizzaBarController {
 
 
 
-            System.out.println("Indtast pizzanavn:");
+            System.out.print("Indtast pizzanavn: ");
             String navn = scanner.nextLine();
 
 
 
-            System.out.println("Indtast ingredienser (separeret med komma):");
+            System.out.print("Indtast ingredienser (separeret med komma): ");
             String ingredienser = scanner.nextLine();
 
-            System.out.println("Indtast pris:");
+            System.out.print("Indtast pris: ");
             int pris = scanner.nextInt();
             scanner.nextLine(); // For at undgå scanner-bug
 
-            System.out.println("Er det en nyhed? (true/false):");
+            System.out.print("Er det en nyhed? (true/false): ");
             boolean isNyhed = scanner.nextBoolean();
             scanner.nextLine(); // For at undgå scanner-bug
 
@@ -211,13 +211,13 @@ public class PizzaBarController {
 
             System.out.print("Indtast nyt navn (eller tryk Enter for at beholde det gamle): ");
             String newName = scanner.nextLine();
-            if (!newName.isEmpty()) { //hvis man tryjjer enter går man til det næste
+            if (!newName.isEmpty()) { //hvis man trykker enter går man til det næste
                 pizzaToEdit.setName(newName); //skriv et nyt navn til den valgte pizza
             }
 
             System.out.print("Indtast nye ingredienser (eller tryk Enter for at beholde de gamle): ");
             String newIngredients = scanner.nextLine();
-            if (!newIngredients.isEmpty()) { //ogem tryl enter for at gå til det næste
+            if (!newIngredients.isEmpty()) { //og tryk enter for at gå til det næste
                 pizzaToEdit.setIngredients(newIngredients); //skriv de nye ingredienser til pizzaen
             }
 

@@ -1,10 +1,10 @@
 import java.io.*;
 import java.util.*;
 import java.io.PrintWriter;
-import java.util.List;
 
 // TODO: Gem i mapper (year/month) til åbning i menuen statisticYearMenu
 
+@SuppressWarnings("CallToPrintStackTrace")
 public class FileHandling {
 
     public static void createFile(String path) {
@@ -17,6 +17,7 @@ public class FileHandling {
             }
         } catch (IOException e) {
             System.out.println("An error occurred");
+            //noinspection CallToPrintStackTrace
             e.printStackTrace();
         }
     }
@@ -51,11 +52,7 @@ public class FileHandling {
         return linjer;
     }
 
-    public static void sortFile(String path) {
-        File fil = new File(path);
 
-
-    }
 
     public static void savePizzaList(List<Pizza> pizzaList) {
         try (PrintWriter writer = new PrintWriter(new FileWriter("pizzaList.txt"))) {

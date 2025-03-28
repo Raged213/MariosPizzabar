@@ -114,8 +114,12 @@ public class PizzaMenu {
     }
     //til omsætning
     public int pizzaPrice(int pizzaNummer){
+        System.out.println("søger efter pizza nummer: " + pizzaNummer);
+
         for (Pizza pizza : pizzaList){
+            System.out.println("Sammenligner med: " + pizza.getPizzaNummer());
             if (pizza.getPizzaNummer() == pizzaNummer){
+                System.out.println("Fundet pizza: " + pizza.getPizzaNummer() + ", Pris: " + pizza.getPrice());
                 return pizza.getPrice();
 
             }
