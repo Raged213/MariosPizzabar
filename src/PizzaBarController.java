@@ -144,64 +144,40 @@ public class PizzaBarController {
 
         public static Pizza createPizza () {
             Scanner scanner = new Scanner(System.in);
-            int pizzaNummer; //Så at jeg kalder pizzaNummer i loopet og ved print af newPizza
-            //Enter pizzas number
-            while (true) {
-                System.out.print("Indtast pizza nummer: ");
-                if (scanner.hasNextInt()) {
-                    pizzaNummer = scanner.nextInt();
-                    scanner.nextLine();
-                    break;
-                } else {
-                    System.out.println("Prøve igen med nummer istedet: ");
-                    scanner.nextLine();
-                }
-            }
 
-            //Enter Pizzas navn
-            System.out.print("Indtast pizza navn: ");
-            String name = scanner.nextLine();
 
-            //Er det en nyhed
 
-            boolean isNyhed; //For at bruge isNyhed i vores while loop.
-            while (true) {
-                System.out.print("Er det en nyhed?: (true/false) ");
-                String nyhedInput = scanner.next().trim().toLowerCase();
+            System.out.println("Indtast pizzanavn:");
+            String navn = scanner.nextLine();
 
-                if (nyhedInput.equals("true")) {
-                    isNyhed = true;
-                    break;
-                } else if (nyhedInput.equals("false")) {
-                    isNyhed = false;
-                    break;
-                } else {
-                    System.out.println("Ugyldigt input, prøve igen med enten ´true´ eller ´false´");
-                }
-            }
-            scanner.nextLine();
 
-            //Enter Pizzas ingredients
-            System.out.print("Indtast ingredients: ");
-            String ingredients = scanner.nextLine();
 
-            //Enter prisen på pizza
-            int price;
-            while (true) {
-                System.out.print("Indtast pris (heltal): ");
-                if (scanner.hasNextInt()) {
-                    price = scanner.nextInt();
-                    scanner.nextLine(); // Fjerner newline
-                    break;
-                } else {
-                    System.out.println("Kan ikke register øre, prøve igen med hele nummer! ");
-                    scanner.nextLine();
-                }
-            }
+            System.out.println("Indtast ingredienser (separeret med komma):");
+            String ingredienser = scanner.nextLine();
 
-            Pizza newPizza = new Pizza(pizzaNummer, name, isNyhed, ingredients, price);
-            System.out.println(Farver.green + "Pizza Tilføjet: " + newPizza.getName() + Farver.reset);
-            FileHandling.writeToFile(String.valueOf(newPizza), "pizzaList.txt");
+            System.out.println("Indtast pris:");
+            int pris = scanner.nextInt();
+            scanner.nextLine(); // For at undgå scanner-bug
+
+            System.out.println("Er det en nyhed? (true/false):");
+            boolean isNyhed = scanner.nextBoolean();
+            scanner.nextLine(); // For at undgå scanner-bug
+
+            int newPizzaNummer = PizzaMenu.getPizzaList().isEmpty() ? 1 : PizzaMenu.getPizzaList().get(PizzaMenu.getPizzaList().size() - 1).getPizzaNummer() + 1;
+
+            // Opret ny pizza
+            Pizza newPizza = new Pizza(newPizzaNummer, navn, isNyhed, ingredienser, pris);
+
+            // Tilføj pizzaen til den originale liste i PizzaMenu
+            PizzaMenu.getPizzaList().add(newPizza);
+
+            // Gem den nye pizza i filen
+            PizzaMenu.savePizzaToFiles();
+
+            // Print den opdaterede menu
+            PizzaMenu.printMenu();
+
+            System.out.println("Ny pizza tilføjet og menuen opdateret!");
 
             return newPizza;
         }
