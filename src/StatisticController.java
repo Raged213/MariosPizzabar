@@ -184,8 +184,6 @@ public class StatisticController {
         return totalOmsaetning;
     }
 
-
-
     public static void saveomsaetning(double omsaetning, String date){
         try (PrintWriter writer = new PrintWriter(new FileWriter("Omsætning.txt", true))) {
             writer.println(date + ";" + omsaetning);
