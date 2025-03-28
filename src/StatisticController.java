@@ -1,16 +1,24 @@
-import java.io.File;
-import java.io.FileNotFoundException;
+import java.io.*;
 import java.util.Scanner;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 public class StatisticController {
 
     public static void mostSoldThisDay(){
+
+        PizzaMenu menu = new PizzaMenu();
+
         LocalDate today = LocalDate.now();   //henter dagens dato
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy"); //lavet et format til datoen dag - måden - år
         String todayString = today.format(formatter); //laver dagens dato til en string i det format vi har lavet
 
         findMostSold("OrdreListe.txt", todayString, todayString); //kalder findMostSold methoden for dagens dato
+
+        double totalOmsaetning = omsaetningForDate("OrdreListe.txt", todayString);
+
+        System.out.println("Total omsætning for idag (" + todayString + "): " + totalOmsaetning + "Kr. ");
+
+        saveomsaetning(totalOmsaetning, todayString);
     }
 
     public static void mostSoldThisWeek(){
@@ -120,6 +128,52 @@ public class StatisticController {
             if (pizzaSales[i] > 0) { //tjekker om pizzaen er blevet solgt mindst 1 gang så kun de solgte pizzaer bliver printet
                 System.out.println("Pizza " + i + ": " + pizzaSales[i] + " stk solgt"); //Udskriver antallet af solgte pizzaer for den tilhørende pizza
             }
+        }
+    }
+
+    public static double omsaetningForDate(String filename, String targetDate) {
+        PizzaMenu menu = new PizzaMenu();
+        double totalOmsaetning = 0;
+
+        try (Scanner scanner = new Scanner(new File(filename))) {
+            while (scanner.hasNextLine()) {
+                String line = scanner.nextLine();
+                if (!line.contains("Dato:")) continue; // Spring linjer over uden dato
+
+                String[] parts = line.split("\t"); // Split ved tabulator
+                if (parts.length < 4) continue; // Sikrer korrekt format
+
+                String datePart = parts[1].replace("Dato: ", "").trim();
+                String pizzaNumreString = parts[2].replace("Pizzanummer: ", "").trim();
+
+                if (datePart.equals(targetDate)) {
+                    pizzaNumreString = pizzaNumreString.replace("[", "").replace("]", ""); // Fjern klammer
+                    String[] pizzaNumre = pizzaNumreString.split(",");
+
+                    for (String num : pizzaNumre) {
+                        int pizzaNummer = Integer.parseInt(num.trim()); // Konverter til int
+                        int price = menu.pizzaPrice(pizzaNummer);
+                        totalOmsaetning += price;
+                        System.out.println("Tilføjer pizza nr. " + pizzaNummer + " pris: " + price + " kr.");
+                    }
+                }
+            }
+        } catch (FileNotFoundException e) {
+            System.out.println("Filen " + filename + " blev ikke fundet.");
+        } catch (NumberFormatException e) {
+            System.out.println("Fejl i format af pizzanummer.");
+        }
+        return totalOmsaetning;
+    }
+
+
+
+    public static void saveomsaetning(double omsaetning, String date){
+        try (PrintWriter writer = new PrintWriter(new FileWriter("Omsætning.txt", true))) {
+            writer.println(date + ";" + omsaetning);
+            System.out.println("Dagens omsætning gemt i Omsætning.txt");
+        } catch (IOException e) {
+            System.out.println("Fejl ved lagring af omsætning: " + e.getMessage());
         }
     }
 }

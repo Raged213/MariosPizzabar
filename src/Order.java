@@ -64,7 +64,7 @@ public class Order {
     @Override
     public String toString() {
         return "\nOrdrenummer: " + ordreNummer + "\tDato: " + getDato() + "\n" +
-                "KundeNavn: " + navn + "\t" +
+                "Navn: " + navn + "\t" +
                 "Pizzanummer: " + pizzaNumre + "\t" +
                 "Afhentningstidspunkt: " + afhentningsTidspunkt + "\n";
     }
