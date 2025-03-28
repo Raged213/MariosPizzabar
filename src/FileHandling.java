@@ -1,9 +1,9 @@
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileWriter;
-import java.io.IOException;
+import java.io.*;
 import java.util.Arrays;
+import java.util.List;
 import java.util.Scanner;
+import java.io.PrintWriter;
+import java.util.List;
 
 // TODO: Gem i mapper (year/month) til åbning i menuen statisticYearMenu
 
@@ -54,6 +54,17 @@ public class FileHandling {
         File fil = new File(path);
 
 
+    }
+
+    public static void savePizzaList(List<Pizza> pizzaList) {
+        try (PrintWriter writer = new PrintWriter(new FileWriter("pizzaList.txt"))) {
+            for (Pizza pizza : pizzaList) {
+                writer.println(pizza.getPizzaNummer() + ";" + pizza.getName() + ";" + pizza.getIngredients() + ";" + pizza.getPrice() + ";" + pizza.getIsNyhed());
+            }
+            System.out.println("Pizza menuen gemt i pizzaList.txt");
+        } catch (IOException e) {
+            System.out.println("fejl, kunne ikke gemme menuen" + e.getMessage());
+        }
     }
 
 
